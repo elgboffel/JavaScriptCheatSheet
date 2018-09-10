@@ -1,0 +1,59 @@
+.page-body {
+    margin-top: $page-header__height;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        @include mq(md) {
+            flex-direction: row;
+        }
+    }
+
+    &__content {
+        order: 2;
+        flex: 1 1 auto;
+        padding: 10px 0 50px;
+
+        @include mq(md) {
+            flex: 1 1 100%;
+            margin-left: 2rem;
+            padding-top: 2rem;
+            max-width: calc(100% - 320px);
+        }
+
+        header {
+            h1 {
+                font-weight: normal;
+
+                i {
+                    font-style: normal;
+                    font-weight: bold;
+                    color: $palette__blue;
+                }
+            }
+        }
+    }
+
+    &__header-description {
+        margin-bottom: 2rem;
+    }
+
+    &__navigation {
+        order: 1;
+        flex: 1 1 auto;
+
+        @include mq(md) {
+            flex: 0 0 300px;
+            position: sticky;
+            top: $page-header__height;
+            padding-right: 10px;
+            max-height: calc(100vh - #{$page-header__height});
+            overflow: auto;
+        }
+
+        > input {
+            display: none;
+        }
+    }
+}

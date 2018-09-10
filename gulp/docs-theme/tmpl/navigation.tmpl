@@ -1,0 +1,90 @@
+<?js
+    const fileName = `${obj.longname.replace(/\//g, '_').replace(/\:/g, '-')}\.html`;
+    const localNavigation = obj.localNavigation;
+    const localNavigationKeys = Object.keys(localNavigation);
+?>
+
+<div class="navigation">
+    <nav class="navigation__content">
+        <?js if (localNavigationKeys.length) { ?>
+
+        <div class="navigation__local">
+            <div class="navigation__groups">
+                <ul>
+
+                    <?js localNavigationKeys.forEach(groupName => { ?>
+
+                    <li class="navigation__group">
+                        <input
+                            id="nav-local-<?js= groupName ?>"
+                            type="checkbox"
+                            autocomplete="off"
+                            checked="checked"
+                        >
+                        <label for="nav-local-<?js= groupName ?>"><?js= groupName.charAt(0).toLocaleUpperCase() + groupName.slice(1) ?></label>
+
+                        <ul>
+                            <?js localNavigation[groupName].forEach(item => { ?>
+                            <li class="navigation__item">
+                                <a href="#<?js= item.id ?>"><?js= item.name ?></a>
+                            </li>
+                            <?js }); ?>
+                        </ul>
+                    </li>
+
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+
+        <?js } ?>
+
+        <div class="navigation__overview">
+            <div class="navigation__groups">
+                <ul>
+
+                    <?js
+                    this.nav.topLevelNav.forEach((entry, index) => {
+                        let navigationOverview = entry.list;
+                        navigationOverview = navigationOverview.replace(
+                            new RegExp('(<li class="navigation__item">)[^>]*' + fileName),
+                            match => {
+                                return match.replace(
+                                    'navigation__item',
+                                    'navigation__item navigation__item--active'
+                                );
+                            }
+                        );
+                        const expandEntry = navigationOverview.indexOf('navigation__item--active') > -1;
+                    ?>
+
+                    <li class="navigation__group">
+                        <input
+                            id="nav-overview-<?js= index ?>"
+                            type="checkbox"
+                            autocomplete="off"
+                            <?js if (expandEntry || !localNavigationKeys.length) { ?>
+                                checked="checked"
+                            <?js } ?>
+                        >
+                        <label for="nav-overview-<?js= index ?>"><?js= entry.title ?></label>
+                        <?js= navigationOverview ?>
+                    </li>
+
+                    <?js }); ?>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<script>
+    const activeNavItem = document.querySelector('.navigation__item--active');
+    if (activeNavItem) {
+        let activeNavItemParent = activeNavItem.closest('.navigation__folder');
+        while (activeNavItemParent) {
+            activeNavItemParent.querySelector('input').checked = true;
+            activeNavItemParent = activeNavItemParent.parentElement.closest('.navigation__folder');
+        }
+    }
+</script>

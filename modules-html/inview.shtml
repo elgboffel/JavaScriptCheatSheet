@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>inView tracking modul</h2>
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Dette modul tilføjer en klasse til elementer idet de er synlige i viewporten. (kan også fjerne
+                                klassen når elementerne forlader viewporten)
+                                <br> initialiseres ved at kalde setupInView()
+                                <br> Eks.:
+                            </p>
+                            <p>
+                                <xmp>
+                                    // @param1: Selector - class på elementer som skal have inView functionen bundet på // @param2: revealClass - Klassen som
+                                    skal sættes på når elementet er i viewporten. (valgfri - som standard vil "inview" blive
+                                    brugt) // @param3: inViewMargin - Antal pixels før og efter viewporten billederne skal
+                                    loade. (valgfri - som standard er det så snart elementet rammer bunden af viewporten)
+                                    setupInView(".inview--element", "inview", 0);
+
+                                </xmp>
+                            </p>
+                            <h3>Filer der skal bruges</h3>
+                            <p>
+                                js/utils/inView.js
+                                <br/> js/utils/classList.js
+                                <br/> scss/Modules/inView.scss (optionel)
+                                <br/> inView eksempel HTML:
+                                <br/>
+                                <xmp>
+                                    <div class="*{string}" data-inview-type="{show eller showhide} *" data-inview-class="*{string}" data-inview-margin="*{string}"></div>
+                                </xmp>
+                            </p>
+
+                            <h3>Ansvarlig</h3>
+                            <p>Christian Broström - cbr@dis-play.dk</p>
+                            <h3>Oprettet dato</h3>
+                            <p>28/04-2017</p>
+                        </div>
+                    </div>
+
+                    <h2>Elementer som får inView-klassen når de befinder sig indenfor viewporten og klassen ikke fjernes igen
+                        (show)
+                    </h2>
+
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+                    <div class="inview--element" data-inview-type="show">Inview Element (show)</div>
+
+                    <h2>Elemente som får inView-klassen når de befinder sig i viewporten og hvor klassen fjernes igen når elementerne
+                        forlader viewporten</h2>
+
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide">Inview Element (showhide)</div>
+                    <div class="inview--element" data-inview-type="showhide" data-inview-margin="500">Inview Element (showhide) (400 margin)</div>
+
+                    <h2>Elemente som får en custom inView-klasse når de befinder sig i viewporten (med showhide & show)</h2>
+
+                    <div class="inview--element" data-inview-type="showhide" data-inview-class="custom-class-of-doom">
+                        <p>Inview Element (custom class) (showhide)</p>
+                        <p>data-option="showhide" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="showhide" data-inview-class="custom-class-of-doom">
+                        <p>Inview Element (custom class) (showhide)</p>
+                        <p>data-option="showhide" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="showhide" data-inview-class="custom-class-of-doom">
+                        <p>Inview Element (custom class) (showhide)</p>
+                        <p>data-option="showhide" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="showhide" data-inview-class="custom-class-of-doom">
+                        <p>Inview Element (custom class) (showhide)</p>
+                        <p>data-option="showhide" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="show" data-inview-class="custom-class-of-doom">
+                        <p> Inview Element (custom class) (show)</p>
+                        <p>data-option="show" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="show" data-inview-class="custom-class-of-doom">
+                        <p> Inview Element (custom class) (show)</p>
+                        <p>data-option="show" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="show" data-inview-class="custom-class-of-doom">
+                        <p> Inview Element (custom class) (show)</p>
+                        <p>data-option="show" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                    <div class="inview--element" data-inview-type="show" data-inview-class="custom-class-of-doom">
+                        <p> Inview Element (custom class) (show)</p>
+                        <p>data-option="show" data-vclass="custom-class-of-doom"</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

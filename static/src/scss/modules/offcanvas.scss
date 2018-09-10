@@ -1,0 +1,146 @@
+.offcanvas {
+    position: absolute;
+    z-index: 11;
+    top: 60px;
+    left: -20em;
+    transform: translate3d(0, 0, 0);
+    transition: transform .5s;
+    width: 20em;
+    list-style: none;
+    background-color: #e5e5e5;
+
+    &.is-open {
+        position: fixed;
+        transform: translate3d(20em, 0, 0);
+    }
+
+    &__nav {
+        padding: 1em;
+    }
+
+    &__toggler {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 3em;
+        height: 3em;
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border: none;
+        line-height: 3em;
+        cursor: pointer;
+        background-color: inherit;
+        border-radius: 0;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item + &__item {
+        margin-top: 1em;
+    }
+
+    &__itemlink {
+        color: #303030;
+        text-decoration: none;
+
+        &:focus,
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__overlay {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        background-color: rgba(black, .7);
+
+        &.is-open {
+            display: block;
+        }
+    }
+}
+
+.icon-svg {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+        background-color: transparent
+    }
+
+    svg {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        fill: #000;
+    }
+
+    span {
+        display: inline-block
+    }
+
+    &.icon-size--medium {
+        line-height: 45px;
+
+        &:before,
+        &.mute-text {
+            width: 45px
+        }
+
+        svg {
+            width: 32px;
+            height: 100%;
+        }
+
+        span {
+            margin-left: 30px;
+        }
+    }
+
+    &.mute-text {
+        text-align: center;
+
+        svg {
+            margin-left: 0
+        }
+
+        span {
+            position: absolute !important;
+            overflow: hidden !important;
+            clip: rect(0 0 0 0) !important;
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0
+        }
+    }
+
+    .lt-ie9 &:before {
+        display: none
+    }
+
+    .lt-ie9 & span {
+        margin-left: 0
+    }
+}

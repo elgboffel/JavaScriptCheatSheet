@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="da" class="no-js">
+<head>
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta charset="utf-8">
+    <!-- Add to web.config -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Offline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--
+        Create a block of inline styling to display until the primary CSS is ready. You should use whatever
+        automatic inlining-capabilities your CMS provides:
+    -->
+    <style type="text/css"><!--#include virtual="/static/dist/css/critical.min.css" --></style>
+    <link rel="preload" href="/static/dist/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="/static/dist/css/main.min.css"></noscript>
+
+    <!-- Preload important stuff like your fonts, too. Remember "crossorigin", even if they're self-hosted!
+        <link rel="preload" href="/static/dist/fonts/some-font.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+        <link rel="preload" href="/static/dist/fonts/some-font.ttf"   as="font" type="font/ttf"   crossorigin="anonymous">
+    -->
+
+    <!-- You can use "prefetch" to preload other important assets (if you're not using HTTP/2 push) -->
+    <link rel="prefetch" href="/static/dist/js/main.min.js">
+
+    <!-- And you can tell the browser to pre-connect to other sites you know you are going to talk to eventually: -->
+    <link rel="dns-prefetch" href="https://cdn.polyfill.io">
+
+    <script type="text/javascript"><!--#include virtual="/static/dist/js/modernizr.js" --></script>
+</head>
+<body>
+
+<header>
+    <h1>Offline</h1>
+</header>
+
+<main>
+
+    <p>You're offline</p>
+
+</main>
+
+<script>
+    var scriptLoaderSettings = {
+        mainScriptSrc: [
+            '/static/dist/js/main.min.js'
+        ],
+        polyfills: 'default-3.6'
+    };
+
+    var loadMainScript=function(){function a(a){var b=document.createElement("script");b.async=!0,b.src=a,document.body.appendChild(b)}if("object"==typeof scriptLoaderSettings.mainScriptSrc)for(var b=0;b<scriptLoaderSettings.mainScriptSrc.length;b++)a(scriptLoaderSettings.mainScriptSrc[b]);else a(scriptLoaderSettings.mainScriptSrc)};
+    !function(a,b){var c,d=[/^(.+)(\[.+MessengerForiOS.+\][ ]*)/,/^(.+)(\[.+FBIOS.+\][ ]*)/,/^(.+)( Twitter for iPhone)/];for(c=0;c<d.length;++c){var e=d[c],f=a.match(e);if(f){b=b+"&ua="+encodeURIComponent(f[1]+" Safari");break}}var g=document.createElement("script");g.src=b,document.body.appendChild(g)}(navigator.userAgent,"https://cdn.polyfill.io/v2/polyfill.min.js?features="+scriptLoaderSettings.polyfills+"&callback=loadMainScript");
+
+    /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License - https://github.com/filamentgroup/loadCSS */
+    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+
+    // Enable this to register a service worker. Please make sure you understand the implications of doing so.
+    if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/sw.js", { scope: '/' }); }
+</script>
+</body>
+</html>

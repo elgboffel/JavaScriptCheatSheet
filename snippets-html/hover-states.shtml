@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+
+
+            <main>
+
+                <div class="max-width site-content">
+
+                    <!-- <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>MODULNAVN</h2>
+
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Beskriv dit modul!</p>
+
+                            <h4>Javascript initialization eksempel</h4>
+                            <xmp>$(".MODULNAVN").each(function () { var MODULNAVN = new dis.MODULNAVN({ box-hover__hover-state-button:
+                                this }); });
+                            </xmp>
+
+                            <h4>Basic html</h4>
+                            <xmp>
+                                <div class="MODULNAVN">
+                                    <p>Den grundmarkup der skal bruges for at modulet virker</p>
+                                </div>
+                            </xmp>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>dis.module.MODULNAVN.js, dis.module.MODULNAVN.scss, dis.module.MODULNAVN.shtml</p>
+                            <h3>Ansvarlig</h3>
+                            <p>DIT NAVN - EMAIL ADRESSE</p>
+                            <h3>Oprettet dato</h3>
+                            <p>*/*-2016</p>
+                            <h3>Ændret dato</h3>
+                            <p>*/*-2016</p>
+                        </div>
+                    </div> -->
+
+                    <div class="list-of-items">
+
+                        <div class="box-hover">
+                            <h3>Slide</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--slide">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--slide" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Box-shadow</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--box-shadow">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--box-shadow" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Shiny effect</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--shiny">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--shiny" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Harkila - Elise</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--underline">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--underline" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Brackets</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--brackets">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--brackets" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Line from bottom</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--line-bottom">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--line-bottom" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Overline to underline</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--overline">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--overline" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Over and underline</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--double-line">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--double-line" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Border</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--border">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--border" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Skin TranslateY</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--skinY">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--skinY" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Skin TranslateX</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--skinX">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--skinX" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Circle</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--circle">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--circle" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Dot dot dot</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--dot-dot-dot">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--dot-dot-dot" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Parallels</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--parallel">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--parallel" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Parallels - highlights</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--combo">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--combo" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Stripes</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--stripes">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--stripes" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Concentrate</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--concentrate">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--concentrate" href="#">Link to XYZ</a>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>SkewX - Border</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--skewX">Button</button>
+                        </div>
+
+                        <div class="box-hover">
+                            <h3>Highlighting</h3>
+                            <button class="box-hover__hover-state-button box-hover__hover-state-button--highlight">Button</button>
+                            <a class="box-hover__hover-state-link box-hover__hover-state-link--highlight" href="#">Link to XYZ</a>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+	<!--<![endif]-->
+	<!--#include file="../shared-html/head.shtml" -->
+
+	<body>
+		<div class="site-wrapper">
+			<!--#include file="../shared-html/header-menu.html" -->
+			<main>
+
+				<div class="max-width site-content">
+
+					<div class="frontline-modules-description" id="description">
+						<div class="frontline-modules-description--wrapper">
+							<h2>Mobilnavigation</h2>
+							<h3>Beskrivelse og afhængigheder</h3>
+							<p>Mobilnavigation med flere niveauer/lag – Virker uden Javascript – Trigger menu ved klik på label, eller ved at tabbe
+								og trykke enter/space, tilhørende en checkbox.</p>
+							<p>Menuen understøtter 3 forskellige slags animationer - Slide in from left, Slide in from right, Slide in from bottom,
+								og gør brug af enten animate-with-sass eller egne custom animationer - Begge muligheder er understøttet og indbygget.
+							</p>
+							<p>Aktiver animationer ved hjælp af følgende klasser som sættes på
+								<xmp>
+									<div class="sitenav"></div>
+								</xmp>
+							</p>
+							<ul>
+								<li>animate-from-left</li>
+								<li>animate-from-right</li>
+								<li>animate-from-bottom</li>
+							</ul>
+
+							<p>Placer menuknap (trigger knap) top venstre, top højre, bund venstre, bund højre ved hjælp af disse klasser på
+								<code>sitenav__btn</code>
+							</p>
+							<ul>
+								<li>sitenav__btn--top-left</li>
+								<li>sitenav__btn--top-right</li>
+								<li>sitenav__btn--bottom-left</li>
+								<li>sitenav__btn--bottom-right</li>
+							</ul>
+							<h4>Basic html</h4>
+							<xmp>
+								Se kildekoden for HTML opsætning.
+							</xmp>
+
+							<h3>Filer der skal bruges</h3>
+							<p>dis.module.mobilenavigation.scss, dis.module.mobilenavigation.shtml, dis.module.mobilenavigation.js</p>
+							<h3>Ansvarlig</h3>
+							<p>Nicky Christensen - nic@dis-play.dk + Søren Husted Nielsen - sni@dis-play.dk + Jacob Søndergaard - jas@dis-play.dk
+							</p>
+							<h3>Oprettet dato</h3>
+							<p>05/10-2016</p>
+							<h3>Ændret dato</h3>
+							<p>17/10-2016</p>
+						</div>
+					</div>
+
+					<!--
+    NOTE TO DEVELOPER:
+    use one of the following classes for animation:
+    animate-from-left = Animates navigation from left to right
+    animate-from-right = Animates navigation from rigth to left
+    animate-from-bottom = Animates navigation from bottom to top
+
+    And for the position of the trigger button use one of these classes (apart from sitenav__btn):
+    sitenav__btn--top-left
+    sitenav__btn--top-right
+    sitenav__btn--bottom-left
+    sitenav__btn--bottom-right
+
+    -->
+
+					<div class="sitenav animate-from-right" data-module="sitenav">
+						<input type="checkbox" id="sitenav__trigger" class="sitenav__trigger">
+						<label for="sitenav__trigger" aria-label="Åbn menu" class="sitenav__btn sitenav__btn--bottom-right">
+							<svg role="img" class="arrow-left" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 56 56" width="56"
+							 height="56">
+								<path d="M28,0C12.561,0,0,12.561,0,28s12.561,28,28,28s28-12.561,28-28S43.439,0,28,0z M40,41H16c-1.104,0-2-0.896-2-2s0.896-2,2-2
+	h24c1.104,0,2,0.896,2,2S41.104,41,40,41z M40,30H16c-1.104,0-2-0.896-2-2s0.896-2,2-2h24c1.104,0,2,0.896,2,2S41.104,30,40,30z
+	 M40,19H16c-1.104,0-2-0.896-2-2s0.896-2,2-2h24c1.104,0,2,0.896,2,2S41.104,19,40,19z" />
+							</svg>
+							<span class="visuallyhidden">Åbn menu</span>
+						</label>
+						<nav role="navigation" class="sitenav__nav" aria-label="Hoved navigation mobil">
+							<ul role="menu">
+								<li class="sitenav__item">
+									<a href="#1" title="link title" role="menuitem">Menupunkt nummer 1</a>
+								</li>
+								<li class="sitenav__item sitenav--haschildren">
+									<!-- This will be a checkbox to detect on :checked so we can display sublevel -->
+									<input type="checkbox" role="menuitemcheckbox" id="sitenav__item--2">
+									<label for="sitenav__item--2" aria-label="Check to open level 2">
+										Åbn level 2
+										<svg role="img" class="arrow-right">
+											<use xlink:href="/static/dist/svg/_bundle.svg#right-arrow"></use>
+										</svg>
+									</label>
+									<ul class="sitenav__lvl-2">
+										<li class="sitenav__item">
+											<a href="#1" title="link title" role="menuitem">Link to parent page</a>
+										</li>
+										<li class="sitenav__item">
+											<a href="#1" title="link title" role="menuitem">Sublevel 1</a>
+										</li>
+										<li class="sitenav__item">
+											<a href="#1" title="link title" role="menuitem">Sublevel 2</a>
+										</li>
+										<li class="sitenav__item">
+											<a href="#1" title="link title" role="menuitem">Sublevel 3</a>
+										</li>
+										<li class="sitenav__item sitenav--haschildren">
+											<input type="checkbox" role="menuitemcheckbox" id="sitenav__subitem--3">
+											<label for="sitenav__subitem--3" aria-label="Check to open level 3">
+												Åbn level 3
+												<svg role="img" class="arrow-right">
+													<use xlink:href="/static/dist/svg/_bundle.svg#right-arrow"></use>
+												</svg>
+											</label>
+											<ul class="sitenav__lvl-3">
+												<li class="sitenav__item">
+													<a href="#1" title="link title" role="menuitem">Link to parent page</a>
+												</li>
+												<li class="sitenav__item">
+													<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+												</li>
+												<li class="sitenav__item">
+													<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+												</li>
+												<li class="sitenav__item">
+													<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+												</li>
+												<li class="sitenav__item sitenav--haschildren">
+													<input type="checkbox" role="menuitemcheckbox" id="sitenav__subitem--4">
+													<label for="sitenav__subitem--4" aria-label="Check to open level 4">
+														Åbn level 4
+														<svg role="img" class="arrow-right">
+															<use xlink:href="/static/dist/svg/_bundle.svg#right-arrow"></use>
+														</svg>
+													</label>
+													<ul class="sitenav__lvl-4">
+														<li class="sitenav__item">
+															<a href="#1" title="link title" role="menuitem">Link to parent page</a>
+														</li>
+														<li class="sitenav__item">
+															<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+														</li>
+														<li class="sitenav__item sitenav--haschildren">
+															<input type="checkbox" role="menuitemcheckbox" id="sitenav__subitem--5">
+															<label for="sitenav__subitem--5" aria-label="Check to open level 5">
+																Åbn level 5
+																<svg role="img" class="arrow-right">
+																	<use xlink:href="/static/dist/svg/_bundle.svg#right-arrow"></use>
+																</svg>
+															</label>
+															<ul class="sitenav__lvl-5">
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Link to parent page</a>
+																</li>
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+																</li>
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+																</li>
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+																</li>
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+																</li>
+																<li class="sitenav__item">
+																	<a href="#1" title="link title" role="menuitem">Sub sub level 2</a>
+																</li>
+																<li class="sitenav__item sitenav__item--back">
+																	<label for="sitenav__subitem--5" aria-label="Click to go back" tabindex="0">
+																		<svg role="img" class="arrow-left">
+																			<use xlink:href="/static/dist/svg/_bundle.svg#left-arrow"></use>
+																		</svg>
+																		Go back
+																	</label>
+																	<!-- Refers to checkbox id="sitenav__item--5" -->
+																</li>
+															</ul>
+														</li>
+														<li class="sitenav__item">
+															<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+														</li>
+														<li class="sitenav__item">
+															<a href="#1" title="link title" role="menuitem">Sub sub level 1</a>
+														</li>
+														<li class="sitenav__item">
+															<a href="#1" title="link title" role="menuitem">Sub sub level 2</a>
+														</li>
+														<li class="sitenav__item sitenav__item--back">
+															<label for="sitenav__subitem--4" aria-label="Click to go back" tabindex="0">
+																<svg role="img" class="arrow-left">
+																	<use xlink:href="/static/dist/svg/_bundle.svg#left-arrow"></use>
+																</svg>
+																Go back
+															</label>
+															<!-- Refers to checkbox id="sitenav__item--4" -->
+														</li>
+													</ul>
+												</li>
+												<li class="sitenav__item">
+													<a href="#1" title="link title" role="menuitem">Sub sub level 2</a>
+												</li>
+												<li class="sitenav__item sitenav__item--back">
+													<label for="sitenav__subitem--3" aria-label="Click to go back" tabindex="0">
+														<svg role="img" class="arrow-left">
+															<use xlink:href="/static/dist/svg/_bundle.svg#left-arrow"></use>
+														</svg>
+														Go back
+													</label>
+													<!-- Refers to checkbox id="sitenav__item--4" -->
+												</li>
+											</ul>
+										</li>
+										<li class="sitenav__item">
+											<a href="#1" title="link title" role="menuitem">Sublevel 5</a>
+										</li>
+										<li class="sitenav__item sitenav__item--back">
+											<label for="sitenav__item--2" aria-label="Click to go back" tabindex="0">
+												<svg role="img" class="arrow-left">
+													<use xlink:href="/static/dist/svg/_bundle.svg#left-arrow"></use>
+												</svg>
+												Go back
+											</label>
+											<!-- Refers to checkbox id="sitenav__item--2" -->
+										</li>
+									</ul>
+								</li>
+								<li class="sitenav__item">
+									<a href="#3" title="link title" role="menuitem">Menupunkt nummer 3</a>
+								</li>
+								<li class="sitenav__item">
+									<a href="#4" title="link title" role="menuitem">Menupunkt nummer 4</a>
+								</li>
+								<li class="sitenav__item">
+									<a href="#5" title="link title" role="menuitem">Menupunkt nummer 5</a>
+								</li>
+								<li class="sitenav__item">
+									<a href="#6" title="link title" role="menuitem">Menupunkt nummer 6</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+
+					<h2>Resize your browser, yo!</h2>
+					<p>Selvom navigationen også virker fint i desktop, så får du den bedste oplevelse ved at køre den i devicemode, eller ved
+						at resize din browser til en mobilstørrelse</p>
+					<p>
+						<strong>Husk at læs modulbeskrivelsen </strong>
+					</p>
+					<div class="obs">
+						<b>OBS:</b> Knap til menu ligger i nederste højre hjørne</div>
+
+				</div>
+
+				<!--#include file="../shared-html/scripts.html" -->

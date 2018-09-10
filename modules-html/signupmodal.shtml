@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2 class="animated">Signup Modal</h2>
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>En simpel modal modul som kan indeholde hvad som helst. I de fleste tilfælde har kunden brug
+                                for et nyhedsbrev eller lign. Den er lavet fixed i bunden af siden.
+                                </br>
+                                Filer som det er afhængigt af:</p>
+                            <h3>Filer der skal bruges</h3>
+                            <p>dis.module.signupmodal.html</p>
+                            <p>dis.module.signupmodal.js</p>
+                            <p>dis.module.signupmodal.scss</p>
+                            <h3>Ansvarlig</h3>
+                            <p>Peter Krogh, men stadig Bjarni's skyld! altid!</p>
+                            <h3>Oprettet dato</h3>
+                            <p>07/12-2015</p>
+                            <h3>Ændret dato</h3>
+                            <p>07/12-2015</p>
+                            <p>11/8 2016 af Bjarni Olsen:
+                                <br/>
+                                <em>Ændrede blot markup så det passer ind i demositet</em>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="signupmodal-wrapper">
+                        <div class="signupmodal small">
+                            <p>Tilmeld dig vores nyhedsbrev</p>
+                        </div>
+                        <div class="signupmodal big shadow-mask">
+                            <div class="close">x</div>
+                            <form class="signupform ">
+                                <div>
+                                    <h3>Nyhedsbrev!</h3>
+                                    <p>
+                                        Tilmeld dig vores nyhedsbreve og få nyheder om alt muligt sjovt. Vi sender ud to gange hver måned.
+                                    </p>
+                                </div>
+                                <input class="email-field" placeholder="Indtast e-mail" type="email">
+                                <button class="signup-btn" type="submit">Tilmeld mig nyhedsbrev</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

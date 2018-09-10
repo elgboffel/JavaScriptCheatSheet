@@ -1,0 +1,94 @@
+﻿//
+// Variables
+// --------------------------------------------------
+
+
+
+// Set a default for "$screensizes", which will be overridden by the following import statement.
+$screensizes: ();
+// Import screen sizes from the configuration file. This is possible through the use of
+// a JSON importer found here: https://github.com/Updater/node-sass-json-importer
+@import "../../../../../../setup/site-settings.json";
+
+
+
+//
+// Colors
+// --------------------------------------------------
+
+$palette__gray: #EBE5E1;
+$palette__gray--dark: #D6CAC2;
+$palette__gray--light: #F5F2F0;
+$palette__yellow: #E3C83D;
+$palette__red: #E33D58;
+$palette__blue: #0D97BD;
+$palette__blue--desaturated: #7D8FC5;
+
+$color__background: #fff;
+$color__text: #222;
+$color__border: $palette__red;
+$color__input-placeholder: $palette__gray;
+
+$bar__primary--background: $palette__blue;
+$bar__primary--text: #fff;
+$bar__secondary--background: $palette__blue--desaturated;
+$bar__secondary--text: #fff;
+$bar__tertiary--background: $palette__red;
+$bar__tertiary--text: #fff;
+
+
+
+$page-header__height: 50px;
+$border__width: 2px;
+$border__width--schema: 1px;
+$gutter: 1rem;
+
+
+//
+// Media Queries
+// --------------------------------------------------
+
+$breakpoints: () !global;
+
+// The "screensizes" variable is defined in "site-settings.json", which is imported at the top of this
+// file - any property in that file is imported as "raw" variables for use in SCSS. If you want to
+// get a specific size from it, for use in a width (or whatever), do this:
+//
+//  width: map-get($screensizes, md);
+//
+// That will give you the associated pixel width as defined in the configuration file.
+
+// We'll start by getting all the keys set in the screen sizes.
+$screensizeKeys: (map-keys($screensizes));
+
+// Create breakpoints for every given screen size.
+@for $i from 1 through length($screensizeKeys) {
+
+    // First, get the name of the current breakpoint (ie. "md")
+    $currentScreensizeName: nth($screensizeKeys, $i);
+
+    // Then, get the screen size associated with it. (ie. "992px")
+    $currentScreensize: map-get($screensizes, $currentScreensizeName);
+
+    // Define a new breakpoint map that we can merge into our "master" breakpoint map.
+    $newBreakpoint: ("#{$currentScreensizeName}": (min-width: #{$currentScreensize}));
+
+    // ... and then merge.
+    $breakpoints: map-merge($breakpoints, $newBreakpoint);
+
+    // You can now use this breakpoint by writing: @include mq(md) { your-code: here; }
+    // The names of all the breakpoints can be found in the configuration file, and you can add and change them
+    // as much as you'd like. "Unused" breakpoints will not make your CSS larger.
+
+
+    // If this is not the first entry, get the name of the previous entry, subtract one pixel from the current size,
+    // and set that as a "max-width" media query. For example, if we just made a "sm >= 768px" breakpoint, this will
+    // create an "xs-max <= 767px" breakpoint.
+    @if $i > 1 {
+        $lastScreensize: nth($screensizeKeys, $i - 1);
+        $newMaxBreakpoint: ("#{$lastScreensize}-max": (max-width: #{$currentScreensize - 1px}));
+        $breakpoints: map-merge($breakpoints, $newMaxBreakpoint);
+
+        // You can now use this breakpoint by writing: @include mq(sm-max) { your-code: here; }
+    }
+}

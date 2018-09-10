@@ -1,0 +1,38 @@
+version: 1.0.{build}
+branches:
+  only:
+  - modules
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+deploy:
+- provider: Environment
+  name: Frontline v3
+  path: C:\Websites\inetpub\frontline\wp-content\themes\frontline.theme\modules
+  skip_files: \\web.config
+  remove_files: true
+  on:
+    branch: modules
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+environment:
+  nodejs_version: "8"
+  #Frontline.deploy_app: true
+  #Frontline.path: E:\Websites\Frontline
+  #Frontline.skip_files: \\web.config
+  #Frontline.remove_files: true
+  # Test against the latest version of this Node.js version
+
+install:
+- ps: Install-Product node $env:nodejs_version
+- cmd: npm -g install npm@lts
+- cmd: install.bat
+build_script:
+- cmd: npm run appveyor
+test: off
+artifacts:
+- path: frontline.zip
+  name: Deploy

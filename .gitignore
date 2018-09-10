@@ -1,0 +1,17 @@
+# JetBrains *Storm project settings
+.idea/*
+
+# Remote repository files and compiled source files. You really shouldn't check these in at any time unless
+# you have exceptionally good reason to do so.
+bower_components/
+node_modules/
+dist/
+docs/
+
+# You probably don't want to check compiled service workers in either.
+sw.js
+
+# Zip-files for deployment, or whatever.
+*.zip
+
+*.orig

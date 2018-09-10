@@ -1,0 +1,61 @@
+.accordion {
+    $parent: &;
+
+    &__radio {
+        @include visuallyhidden();
+
+        &:checked ~ {
+            #{$parent}__content {
+                display: block;
+            }
+
+            #{$parent}__trigger #{$parent}__close {
+                cursor: pointer;
+                display: block;
+            }
+        }
+    }
+
+    &__title {
+        padding: 10px;
+        margin: 0;
+    }
+
+    &__reset {
+        display: none;
+    }
+
+    &__trigger {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        border: solid 1px black;
+    }
+
+    &__close {
+        @include position(absolute, 0);
+        opacity: 0;
+        display: none;
+    }
+
+    &__item {
+        position: relative;
+        margin-bottom: 15px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__content {
+        display: none;
+        overflow: hidden;
+        transition: max-height 500ms;
+    }
+
+    &__body {
+        padding: 10px;
+        animation-name: fadeInDown;
+        animation-duration: 200ms;
+    }
+}

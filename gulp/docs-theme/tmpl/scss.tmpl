@@ -1,0 +1,105 @@
+<?js
+const data = obj;
+?>
+
+<div class="function function--scss">
+    <div class="function__target" id="<?js= id ?>"></div>
+
+    <dt class="function__header">
+        <h4>
+            <?js if (data.deprecated) { ?>
+            <?js= this.partial('../svg/warning.svg') ?>
+            <?js } ?>
+            <?js= name ?>
+        </h4>
+    </dt>
+
+    <dd class="function__body">
+        <?js if (type !== 'css') { ?>
+        <figure class="function__body-part function__body-part--definition definition">
+            <?js if (directive) { ?>
+            <span class="definition__type"><?js= directive ?></span>
+            <?js } ?>
+            <span class="definition__name"><?js= name ?></span><?js if (params && params.length) { ?><span class="definition__arguments">(<wbr><?js= params.map((param, index) => '<span class="definition__argument">' + param.name + '</span>' + (typeof param.default === 'undefined' ? '' : ']') + (index === params.length - 1 ? '' : typeof params[index + 1].default === 'undefined' ? ', ' : ' [,&nbsp;')).join('') ?>)</span><?js } ?>
+            <?js if (returns && returns.type) { ?>
+            <span class="definition__return-types"> :<?js= returns.type.toLowerCase() ?></span>
+            <?js } else if (mixinContent) { ?>
+            <span class="definition__return-types"> {&nbsp;...&nbsp;}</span>
+            <?js } ?>
+        </figure>
+        <?js } ?>
+
+        <?js if (data && data.description) { ?>
+        <div class="function__body-part function__body-part--description searchable">
+            <?js= data.description ?>
+        </div>
+        <?js } ?>
+
+        <?js
+        const detailsPartial = this.partial('details.tmpl', data).trim();
+        if (detailsPartial) {
+        ?>
+        <div class="function__body-part function__body-part--details">
+            <?js= detailsPartial ?>
+        </div>
+        <?js } ?>
+
+        <?js if (data.params && data.params.length) { ?>
+            <div class="function__body-part function__body-part--parameters">
+                <h5>Parameters</h5>
+                <div>
+                    <?js= this.partial('schema.tmpl', params) ?>
+                </div>
+            </div>
+        <?js } ?>
+
+        <?js if (data.props && data.props.length) { ?>
+            <div class="function__body-part function__body-part--properties">
+                <h5>Properties</h5>
+                <div>
+                    <?js= this.partial('schema.tmpl', props) ?>
+                </div>
+            </div>
+        <?js } ?>
+
+        <?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
+        <div class="function__body-part function__body-part--requires">
+            <h5>Requires</h5>
+            <div>
+                <ul>
+                    <?js data.requires.forEach(require => { ?>
+                    <li><?js= this.linkto(require) ?></li>
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.returns && data.type !== "variable") { ?>
+        <div class="function__body-part function__body-part--returns">
+            <h5>Returns</h5>
+            <div>
+                <?js= this.partial('schema.tmpl', [returns]) ?>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (type === 'css' && data.code) { ?>
+            <div class="function__body-part function__body-part--examples">
+                <h5>Code</h5>
+                <div class="bust-1rem">
+                    <?js= this.partial('examples.tmpl', [{type: 'scss', code}]) ?>
+                </div>
+            </div>
+        <?js } ?>
+
+        <?js if (data.examples && examples.length) { ?>
+            <div class="function__body-part function__body-part--examples">
+                <h5>Example<?js= examples.length > 1 ? 's' : '' ?></h5>
+                <div class="bust-1rem">
+                    <?js= this.partial('examples.tmpl', examples) ?>
+                </div>
+            </div>
+        <?js } ?>
+    </dd>
+</div>

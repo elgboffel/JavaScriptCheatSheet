@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>MODULNAVN</h2>
+
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Beskriv dit modul!</p>
+
+                            <h4>Javascript initialization eksempel</h4>
+                            <xmp>$(".MODULNAVN").each(function () { var MODULNAVN = new dis.MODULNAVN({ container: this }); });
+                            </xmp>
+
+                            <h4>Basic html</h4>
+                            <xmp>
+                                <div class="MODULNAVN">
+                                    <p>Den grundmarkup der skal bruges for at modulet virker</p>
+                                </div>
+                            </xmp>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>dis.module.MODULNAVN.js, dis.module.MODULNAVN.scss, dis.module.MODULNAVN.shtml</p>
+                            <h3>Ansvarlig</h3>
+                            <p>DIT NAVN - EMAIL ADRESSE</p>
+                            <h3>Oprettet dato</h3>
+                            <p>*/*-2016</p>
+                            <h3>Ændret dato</h3>
+                            <p>*/*-2016</p>
+                        </div>
+                    </div>
+
+                    <div class="MODULNAVN">
+                        <h1>MODULNAVN</h1>
+                        <p>DIN MODUL MARKUP HER</p>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

@@ -1,0 +1,163 @@
+<?js
+    const params = obj;
+
+    /* sort subparams under their parent params (like opts.classname) */
+    let parentParam = null;
+
+    params.forEach((param, i) => {
+        if (!param) { return; }
+        if ( parentParam && param.name && param.name.indexOf(parentParam.name + '.') === 0 ) {
+            param.name = param.name.substr(parentParam.name.length+1);
+            parentParam.subparams = parentParam.subparams || [];
+            parentParam.subparams.push(param);
+            params[i] = null;
+        }
+        else {
+            parentParam = param;
+        }
+    });
+
+    /* determine if we need extra columns, "attributes" and "default" */
+    params.hasAttributes = false;
+    params.hasDefault = false;
+    params.hasName = false;
+    params.hasType = false;
+    params.hasDescription = false;
+
+    params.forEach(param => {
+        if (!param) { return; }
+
+        if (param.optional || param.nullable || param.variable) {
+            params.hasAttributes = true;
+        }
+
+        if (param.name) {
+            params.hasName = true;
+        }
+
+        if (param.type) {
+            params.hasType = true;
+        }
+
+        if (typeof param.defaultvalue !== 'undefined' || typeof param.default !== 'undefined') {
+            params.hasDefault = true;
+        }
+
+        if (typeof param.description !== 'undefined') {
+            params.hasDescription = true;
+        }
+    });
+
+?>
+
+<div class="schema">
+    <div class="schema__content">
+        <table class="schema__table">
+            <thead>
+            <tr>
+                <?js if (params.hasName) {?>
+                <th class="schema__cell schema__cell--head schema__cell--name">Name</th>
+                <?js } ?>
+
+                <?js if (params.hasType) {?>
+                <th class="schema__cell schema__cell--head schema__cell--type">Type</th>
+                <?js } ?>
+
+                <?js if (params.hasAttributes) {?>
+                <th class="schema__cell schema__cell--head schema__cell--attributes">Attributes</th>
+                <?js } ?>
+
+                <?js if (params.hasDefault) {?>
+                <th class="schema__cell schema__cell--head schema__cell--default">Default</th>
+                <?js } ?>
+
+                <?js if (params.hasDescription) {?>
+                <th class="schema__cell schema__cell--head schema__cell--description">Description</th>
+                <?js } ?>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?js
+                params.forEach(param => {
+                    if (!param) { return; }
+            ?>
+
+                <tr>
+                    <?js if (params.hasName) {?>
+                    <td class="schema__cell schema__cell--body schema__cell--name searchable">
+                        <span class="argument"><?js= (param.variable ? '...' : '') + param.name ?></span>
+                    </td>
+                    <?js } ?>
+
+                    <?js if (params.hasType) {?>
+                    <td class="schema__cell schema__cell--body schema__cell--type">
+                        <?js if (param.type && param.type.names) { ?>
+                        <?js= this.partial('type.tmpl', param.type.names) ?>
+                        <?js } else if (typeof param.type === "string") { ?>
+                        <?js= this.partial('type.tmpl', [param.type]) ?>
+                        <?js } ?>
+                    </td>
+                    <?js } ?>
+
+                    <?js if (params.hasAttributes) {?>
+                    <td class="schema__cell schema__cell--body schema__cell--attributes">
+                        <ul>
+                            <?js if (param.optional) { ?>
+                            <li>&lt;optional&gt;</li>
+                            <?js } ?>
+
+                            <?js if (param.nullable) { ?>
+                            <li>&lt;nullable&gt;</li>
+                            <?js } ?>
+
+                            <?js if (param.variable) { ?>
+                            <li>&lt;repeatable&gt;</li>
+                            <?js } ?>
+                        </ul>
+                    </td>
+                    <?js } ?>
+
+                    <?js if (params.hasDefault) {?>
+                    <td class="schema__cell schema__cell--body schema__cell--default">
+                        <?js
+                        if (typeof param.defaultvalue !== 'undefined') {
+                            const safe = this.htmlsafe(param.defaultvalue)
+                        ?>
+                        <?js= safe === 'undefined' ? String(param.defaultvalue) : safe ?>
+                        <?js
+                        } else if (typeof param.default !== 'undefined') {
+                            const safe = this.htmlsafe(param.default)
+                        ?>
+                        <?js= safe === 'undefined' ? String(param.default) : safe ?>
+                        <?js } ?>
+                    </td>
+                    <?js } ?>
+
+                    <?js if (params.hasDescription) {?>
+                    <td class="schema__cell schema__cell--body schema__cell--description searchable">
+                        <?js= param.description ?>
+                    </td>
+                    <?js } ?>
+                </tr>
+
+                <?js
+                if (param.subparams) {
+                    var colspan = params.hasName ? 2 : 1;
+                    colspan += params.hasDescription ? 1 : 0;
+                    colspan += params.hasAttributes ? 1 : 0;
+                    colspan += params.hasDefault ? 1 : 0;
+                ?>
+                <tr class="schema__empty"><td colspan="<?js= colspan ?>"></td></tr>
+                <tr class="schema__sub-schema">
+                    <td colspan="<?js= colspan ?>">
+                        <?js= this.partial('schema.tmpl', param.subparams) ?>
+                    </td>
+                </tr>
+                <?js } ?>
+
+            <?js }); ?>
+            </tbody>
+        </table>
+    </div>
+</div>

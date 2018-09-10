@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>Off canvas menu</h2>
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Modulet er sat op med aria attributer og sætter
+                                <code>tabindex="-1"</code> på menupunkterne når menuen er lukket og
+                                <code>tabindex="0"</code> når den er åben. Det sørger for at man ikke tab'er ind i menuen når den er lukket.</p>
+                            <p>Når man tab'er igennem menupunkterne, vil
+                                <code>.offcanvas-toggler</code> få focus efter sidste menupunkt og man starter derefter forfra. Det sørger for at man ikke
+                                tab'er ud af menuen når den er åben.</p>
+                            <p>Modulet laver selv et overlay, som lukker menuen når man klikker på det.</p>
+                            <p>Når menuen er åben, sættes der en klasse på
+                                <code>body</code> for at give den
+                                <code>overflow: hidden</code>. Dette er for at man ikke kan scrolle siden.</p>
+                            <h4>Javascript initialization eksempel:</h4>
+                            <xmp>$(".offcanvas-menu").each(function () { var offcanvas = new dis.OffCanvasMenu({ container: this
+                                }); });
+                            </xmp>
+
+                            <h4>Basic html</h4>
+                            <xmp>
+                                <div class="offcanvas-menu">
+                                    <button class="offcanvas-toggler" title="navigation menu" aria-label="navigation menu">Menu</button>
+                                    <ul>
+                                        <li>
+                                            <a href="#1">Menupunkt nummer 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#2">Menupunkt nummer 2</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </xmp>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>dis.module.offcanvas.js, dis.module.offcanvas.scss, dis.module.offcanvas.shtml</p>
+                            <h3>Ansvarlig</h3>
+                            <p>Bjarni Olsen - bjo@dis-play.dk</p>
+                            <h3>Oprettet dato</h3>
+                            <p>13/08-2015</p>
+                            <h3>Ændret dato</h3>
+                            <p>11/08-2016</p>
+                        </div>
+                    </div>
+
+                    <div class="offcanvas">
+                        <button class="offcanvas__toggler icon-svg icon-size--medium mute-text" title="navigation menu" aria-label="navigation menu">
+                            <svg role="img">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/dist/svg/_bundle.svg#icon-burger"></use>
+                            </svg>
+                            <span>Menu</span>
+                        </button>
+                        <nav role="navigation" id="menu" class="offcanvas__nav">
+                            <h2>Menu</h2>
+                            <ul class="offcanvas__list">
+                                <li class="offcanvas__item">
+                                    <a href="#1" class="offcanvas__itemlink">Menupunkt nummer 1</a>
+                                </li>
+                                <li class="offcanvas__item">
+                                    <a href="#2" class="offcanvas__itemlink">Menupunkt nummer 2</a>
+                                </li>
+                                <li class="offcanvas__item">
+                                    <a href="#3" class="offcanvas__itemlink">Menupunkt nummer 3</a>
+                                </li>
+                                <li class="offcanvas__item">
+                                    <a href="#4" class="offcanvas__itemlink">Menupunkt nummer 4</a>
+                                </li>
+                                <li class="offcanvas__item">
+                                    <a href="#5" class="offcanvas__itemlink">Menupunkt nummer 5</a>
+                                </li>
+                                <li class="offcanvas__item">
+                                    <a href="#6" class="offcanvas__itemlink">Menupunkt nummer 6</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <h2>Header Level 2</h2>
+                    <p>
+                        <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
+                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                        amet quam egestas semper.
+                        <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                        ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                        <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui.
+                        <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+                    <h2>Header Level 2</h2>
+                    <p>
+                        <strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas.
+                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit
+                        amet quam egestas semper.
+                        <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                        ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                        <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                        sagittis tempus lacus enim ac dui.
+                        <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

@@ -1,0 +1,20 @@
+.definition {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+    &__type {
+        color: #690;
+    }
+
+    &__name {
+        font-weight: bold;
+        color: #000;
+    }
+
+    &__argument {
+        color: #DD4A68;
+    }
+
+    &__return-types {
+        color: #07a;
+    }
+}

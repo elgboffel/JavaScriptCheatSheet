@@ -1,0 +1,18 @@
+<script>
+    var scriptLoaderSettings = {
+        mainScriptSrc: [
+            '/static/dist/js/main.min.js'
+        ],
+        polyfills: 'default-3.6'
+    };
+
+    var loadMainScript=function(){function a(a){var b=document.createElement("script");b.defer=!0,b.async=!!0,b.src=a,document.body.appendChild(b)}if("object"==typeof scriptLoaderSettings.mainScriptSrc)for(var b=0;b<scriptLoaderSettings.mainScriptSrc.length;b++)a(scriptLoaderSettings.mainScriptSrc[b]);else a(scriptLoaderSettings.mainScriptSrc)};
+    !function(a,b){var c,d=[/^(.+)(\[.+MessengerForiOS.+\][ ]*)/,/^(.+)(\[.+FBIOS.+\][ ]*)/,/^(.+)( Twitter for iPhone)/];for(c=0;c<d.length;++c){var e=d[c],f=a.match(e);if(f){b=b+"&ua="+encodeURIComponent(f[1]+" Safari");break}}var g=document.createElement("script");g.src=b,document.body.appendChild(g)}(navigator.userAgent,"https://cdn.polyfill.io/v2/polyfill.min.js?features="+scriptLoaderSettings.polyfills+"&callback=loadMainScript");
+
+    /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License - https://github.com/filamentgroup/loadCSS */
+    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+
+    // Enable this to register a service worker. Please make sure you understand the implications of doing so.
+    // if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/sw.js", { scope: '/' }); }
+
+</script>

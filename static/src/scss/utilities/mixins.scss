@@ -1,0 +1,336 @@
+﻿//
+// Mixins
+// --------------------------------------------------
+
+// Utilities
+// -------------------------
+
+/// Clean a button of its default browser styling.
+/// @group mixins and tools
+/// @example
+///   button {
+///       @include clean-button;
+///       color: blue;
+///       text-decoration: underline;
+///   }
+@mixin clean-button {
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    vertical-align: bottom;
+    cursor: pointer;
+    user-select: none;
+}
+
+/// Apply clearfix to an element.
+/// @group mixins and tools
+/// @example
+///   .parent {
+///       @include clearfix;
+///
+///       .child {
+///           float: right;
+///           height: 300px;
+///       }
+///   }
+@mixin clearfix {
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+/// Prepend a selector (like a tag name) to the last part of the selector
+///
+/// @group mixins and tools
+/// @author Lars Munkholm <lars.munkholm@akqa.com>
+/// @param {string} $prepend - The selector to prepend
+/// @param {number} $goBack [0] - How many parents to go back
+///
+/// @example scss
+///   form .input {
+///       @include prepend-selector("input") { height: 50px; }
+///       @include prepend-selector("textarea") { height: 200px; }
+///   }
+///
+///   // This will return:
+///   form input.input { height: 50px; }
+///   form textarea.input { height: 200px; }
+///
+/// @example scss - Use the "goBack" parameter to match a parent's tag name.
+///   .content .ribbon {
+///       @include prepend-selector("article", 1) { background: white; }
+///       @include prepend-selector("section", 1) { background: grey; }
+///   }
+///
+///   // This will return:
+///   article.content .ribbon { background: white; }
+///   section.content .ribbon { background: grey; }
+///
+/// @example scss - Use strings to prepend classes or even a selector using "&"
+///   .box img {
+///       @include prepend-selector(".box--small", 1) { height: 100px; }
+///       @include prepend-selector("&--large", 1) { height: 200px; }
+///   }
+///
+///   // This will return:
+///   .box--small.box img { height: 100px; }
+///   .box--large img { height: 200px; }
+@mixin prepend-selector($prepend, $goBack: 0) {
+    @each $selector in & {
+        $result: null;
+        $goBackThis: $goBack;
+
+        // Go back a step further for each sibling combinator
+        @for $i from 1 through length($selector) {
+            $thisSelector: nth($selector, $i);
+
+            @if $thisSelector == ">" or $thisSelector == "+" or $thisSelector == "~" {
+                $goBackThis: $goBackThis + 1;
+            }
+        }
+
+        // Create a new selector
+        @for $i from 1 through length($selector) {
+            @if $i == length($selector) - $goBackThis {
+                $thisSelector: nth($selector, $i);
+                $prependSelector: str-replace($prepend, "&", $thisSelector);
+
+                @if $prependSelector == $prepend {
+                    $result: append($result, $prependSelector + $thisSelector);
+                } @else {
+                    $result: append($result, $prependSelector);
+                }
+            } @else {
+                $result: append($result, nth($selector, $i));
+            }
+        }
+
+        // Insert content under the new selector
+        @at-root #{$result} {
+            @content;
+        }
+    }
+}
+
+// WebKit-style focus
+@mixin tab-focus {
+    // Default
+    outline: thin dotted #333;
+
+    // WebKit
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+// Placeholder text
+@mixin placeholder($color: $color__input-placeholder) {
+    // Firefox 19+
+    &::-moz-placeholder {
+        color: $color;
+
+        @content;
+    }
+
+    // Safari and Chrome
+    &::-webkit-input-placeholder {
+        color: $color;
+
+        @content;
+    }
+
+    // Internet Explorer 10+
+    &:-ms-input-placeholder {
+        color: $color;
+
+        @content;
+    }
+}
+
+/// Visually hide an element, but keep it accessible to screen readers.
+/// @group mixins and tools
+@mixin visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+// GRADIENTS
+// --------------------------------------------------
+
+// Horizontal gradient, from left to right
+//
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+// Color stops are not available in IE9 and below.
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+    background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+}
+
+// Vertical gradient, from top to bottom
+//
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+// Color stops are not available in IE9 and below.
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+    background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+}
+
+@mixin gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg) {
+    background-repeat: repeat-x;
+    background-image: linear-gradient($deg, $start-color, $end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+}
+
+@mixin gradient-horizontal-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+    background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+    background-repeat: no-repeat;
+}
+
+@mixin gradient-vertical-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+    background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+    background-repeat: no-repeat;
+}
+
+@mixin gradient-radial($inner-color: #555,$outer-color: #333) {
+    background-image: radial-gradient(circle, $inner-color, $outer-color);
+    background-repeat: no-repeat;
+}
+
+@mixin gradient-striped($color: rgba(255,255,255,.15),$angle: 45deg) {
+    background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+}
+
+
+
+/// Media query manager.
+/// @group mixins and tools
+/// @author Anders Gissel <anders.gissel@akqa.com>
+/// @param {string} $breakpoint - Breakpoint
+/// @example
+///   @include mq(sm) {
+///       font-size: 1.5em;
+///   }
+/// @example @include mq(md-max) { ... }
+/// @requires {variable} $breakpoints
+/// @output A media-query with a min-width or a max-width.
+@mixin mq($breakpoint) {
+    $sizeString: get-breakpoint($breakpoint);
+
+    @if $sizeString {
+        @media #{$sizeString} {
+            @content;
+        }
+    }
+}
+
+@function is-length($value) {
+    @return type-of($value) != "null" and (str-slice($value + "", 1, 4) == "calc" or index(auto inherit initial 0, $value) or type-of($value) == "number" and not unitless($value));
+}
+
+@function unpack($shorthand) {
+    @if length($shorthand) == 1 {
+        @return nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1);
+    }
+
+    @else if length($shorthand) == 2 {
+        @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 1) nth($shorthand, 2);
+    }
+
+    @else if length($shorthand) == 3 {
+        @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 3) nth($shorthand, 2);
+    }
+
+    @else {
+        @return $shorthand;
+    }
+}
+
+
+// Shorten position styling
+// @include position(absolute, 20px 40px 60px 80px);
+// Turns into:
+// position: absolute;
+// top: 20px;
+// right: 40px;
+// bottom: 60px;
+// left: 80px;
+@mixin position($position: relative, $coordinates: null null null null) {
+    @if type-of($position) == list {
+        $coordinates: $position;
+        $position: relative;
+    }
+
+    $coordinates: unpack($coordinates);
+    $offsets: (top: nth($coordinates, 1), right: nth($coordinates, 2), bottom: nth($coordinates, 3), left: nth($coordinates, 4));
+
+    position: $position;
+
+    @each $offset, $value in $offsets {
+        @if is-length($value) {
+            #{$offset}: $value;
+        }
+    }
+}
+
+
+/// Set aspect ratio as `padding-top`
+/// @param {umber} $x - width
+/// @param {umber} $y - height
+/// @example @include ratio(16, 9);
+@mixin ratio($x, $y) {
+    padding-top: percentage($y / $x);
+}
+
+
+
+// GRID
+// --------------------------------------------------
+
+// Mixin for building a column definition.
+@mixin buildColumn($breakpointName, $columnWidth) {
+
+    // Generates classes like md-5, sm-3, lg-7, etc. (".breakpointName-columnWidth").
+    .#{$breakpointName}-#{$columnWidth} {
+        @extend %baseColumn;
+
+        // Only render the "--no-pad" flavor if padding is not disabled completely.
+        @if (not $grid__disable-padding) {
+            &--no-pad {
+                @extend %baseColumnNoPad;
+            }
+        }
+
+        @include mq($breakpointName) {
+            // Calculate width as a percentage of the whole.
+            $percentage: percentage($columnWidth / $grid__columns);
+            max-width: $percentage; // Fix for IE
+            flex: 0 0 $percentage;
+        }
+    }
+
+    // Create horizontal offset classes.
+    // Generates classes like md-offset-x, sm-offset-x, lg-offset-x (where x is a an integer).
+    .#{$breakpointName}-offset-#{$columnWidth} {
+        @extend %baseColumnOffset;
+
+        @include mq($breakpointName) {
+            // Calculates percentage based on $key-value and number of columns times 100.
+            margin-left: percentage($columnWidth / $grid__columns);
+        }
+    }
+}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+<!--<![endif]-->
+<!--#include file="../shared-html/head.shtml" -->
+
+<body>
+    <div class="site-wrapper">
+
+        <!--#include file="../shared-html/header-menu.html" -->
+
+        <main>
+
+            <div class="max-width site-content custom-selectbox-test">
+
+                <div class="frontline-modules-description is-open" id="description">
+                    <div class="frontline-modules-description--wrapper">
+                        <h3>Custom selectbox</h3>
+                        <p>Selectbox written in our own frontline code (es6) for better customization.</p>
+                        <p>Fallback to native on mobile devices.</p>
+
+                        <h4>Functionality</h4>
+                        <p>- KeyEvent (tab, up, down, esc)</p>
+                        <p>- KeyEvent - Jump to option - Using first letter</p>
+                        <p>- Accessibility handling aria and tabbing</p>
+                        <p>- Detect space around selectbox, so optionslist can open on top of label instead of underneath if needed</p>
+
+                        <p>- Option group - <a href="#optiongroup">See</a></p>
+                        <p>- Subtext - <a href="#subtext">See</a></p>
+
+                        <p>- Set your own uniqueID - <a href="#setuniqueid">See</a></p>
+                        <p>- Set prefix classname as data-classprefix - <a href="#seeclassprefix">See</a></p>
+
+                        <p>- Disabled / hidden options/optgroup - <a href="#disabledhiddenoption">See</a></p>
+                        <p>- Multiple selectbox set/get value - <a href="#getsetvalue">See</a></p>
+                        <p>- Update custom-selectbox - <a href="#updateselect">See</a></p>
+
+                        <p>- Max-height - With custom scrollbar <a href="#maxheight">See</a></p>
+
+                        <p>- Disable label text update for selected options -  <a href="#updatelabel">See</a></p>
+
+                        <br />
+                        <h4>IOS and Android</h4>
+                        <p>- On IOS and Android with touch, the customselectbox will use native selectbox.</p>
+                        <p>- You can set data props to overwrite this. - <a href="#navtiveoff">See</a></p>
+
+                        <br /><br />
+                        <h4>Know issues to be aware of</h4>
+                        <p>- To handle Android select</p>
+                        <p>- On IOS the state option:hidden and option:disabled is not currently working in native selectbox.</p>
+
+                        <h4>Comming later:</h4>
+                        <p>- Handling option:disabled and option:hidden for native selectbox on IOS</p>
+                    </div>
+                </div>
+
+                <h1>Custom selectbox</h1>
+
+                <h2>Single</h2>
+                <select id="kollega" class="custom-selectbox" name="kollega" data-module="custom-selectbox">
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <br /><br />
+
+                <h2>Multiple</h2>
+                <select id="kollegaer" class="custom-selectbox" name="kollegaer" data-module="custom-selectbox" multiple>
+                    <option>Vælg kollegaer</option>
+                    <option value="anders">Anders Gissel</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="optiongroup"></a>
+                <h2>Optgroups</h2>
+                <h3>Single</h3>
+                <select id="kollega2" class="custom-selectbox" name="kollega2" data-module="custom-selectbox">
+                    <option data-subtext="(nulstil)">Vælg kollega</option>
+                    <option value="andreas">Andreas</option>
+                    <optgroup label="København">
+                        <option value="soren">Søren Husted Nielsen</option>
+                        <option value="peter">Peter Krogh</option>
+                        <option value="elise">Elise Bach</option>
+                    </optgroup>
+                    <optgroup label="Jylland">
+                        <option value="anders">Anders Gissel</option>
+                        <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    </optgroup>
+                    <option value="thomas">Thomas</option>
+                </select>
+
+                <br /><br />
+
+                <h3>Multiple</h3>
+                <select id="kollegaer2" class="custom-selectbox" name="kollegaer2" data-module="custom-selectbox" multiple>
+                    <option data-subtext="(nulstil)">Vælg kollega</option>
+                    <optgroup label="København">
+                        <option value="soren">Søren Husted Nielsen</option>
+                        <option value="peter">Peter Krogh</option>
+                        <option value="elise">Elise Bach</option>
+                    </optgroup>
+                    <option value="thomas">Thomas</option>
+                    <option value="andreas">Andreas</option>
+                    <optgroup label="Jylland">
+                        <option value="anders">Anders Gissel</option>
+                        <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    </optgroup>
+                    <option value="marie">Maria</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="subtext"></a>
+                <h2>Sub Text ( option data-subtext )</h2>
+                <select id="kollega3" class="custom-selectbox" name="kollega" data-module="custom-selectbox">
+                    <option>Vælg kollega</option>
+                    <option value="soren" data-subtext="(Frontend)">Søren Husted Nielsen</option>
+                    <option value="nicolaj" data-subtext="(Frontend)">Nicolaj Lund Hummel</option>
+                    <option value="peter" data-subtext="(Frontend)">Peter Krogh</option>
+                    <option value="elise" data-subtext="(Frontend)">Elise Bach</option>
+                    <option value="anders" data-subtext="(Frontend)">Anders Gissel</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="navtiveoff"></a>
+                <h2>Nativeoff on tablet/mobile ( data-nativeoff )</h2>
+                <p>Default the customselectbox will use native on IOS and Android devices. The code check only these devices.<br />
+                    So if your are using devtools on Window or MacOS computer, the custom-selectbox will use the customized version.</p>
+                <p>Data-nativeoff = true - Will use the custom option dropdown on touch.</p>
+
+                <h3>Single</h3>
+                <select id="kollega4" class="custom-selectbox" name="kollega" data-module="custom-selectbox" data-nativeoff="true">
+                    <option>Vælg kollega</option>
+                    <option value="soren" data-subtext="(Frontend)">Søren Husted Nielsen</option>
+                    <option value="nicolaj" data-subtext="(Frontend)">Nicolaj Lund Hummel</option>
+                    <option value="peter" data-subtext="(Frontend)">Peter Krogh</option>
+                    <option value="elise" data-subtext="(Frontend)">Elise Bach</option>
+                    <option value="anders" data-subtext="(Frontend)">Anders Gissel</option>
+                </select>
+                <br />
+                <h3>Multiple</h3>
+                <select id="kollega44" class="custom-selectbox" name="kollega" data-module="custom-selectbox" data-nativeoff="true" multiple>
+                    <option>Vælg kollega</option>
+                    <option value="soren" data-subtext="(Frontend)">Søren Husted Nielsen</option>
+                    <option value="nicolaj" data-subtext="(Frontend)">Nicolaj Lund Hummel</option>
+                    <option value="peter" data-subtext="(Frontend)">Peter Krogh</option>
+                    <option value="elise" data-subtext="(Frontend)">Elise Bach</option>
+                    <option value="anders" data-subtext="(Frontend)">Anders Gissel</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="setuniqueid"></a>
+                <h2>Set a uniqueID in data-uniqueid, will overwrite the build-in config.uniqueID</h2>
+
+                <h3>Single</h3>
+                <select id="kollega-uniqueid" class="custom-selectbox" name="kollega-uniqueid" data-module="custom-selectbox" data-uniqueid="id-123456">
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="setclassprefix"></a>
+                <h2>Set a prefix class in data-classprefix, will overwrite the build-in config.classprefix</h2>
+                <p>Missing styles for this test.</p>
+
+                <h3>Single</h3>
+                <select id="kollega-classprefix" class="cs-theme" name="kollega-unique-classprefix" data-module="custom-selectbox" data-classprefix="cs-theme">
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="disabledhiddenoption"></a>
+                <h2>Disabled/hidden options and optionsgroups</h2>
+                <p>Options and optiongroups can be disabled and hidden.</p>
+                <p>Notice: disable and hidden is not currently working in native IOS.</p>
+
+                <h3>Disabled</h3>
+                <select id="kollega-disabled" class="custom-selectbox" name="kollega2" data-module="custom-selectbox" multiple>
+                    <option data-subtext="(nulstil)">Vælg kollega</option>
+                    <option value="andreas">Andreas</option>
+                    <optgroup label="København">
+                        <option value="soren" disabled>Søren Husted Nielsen</option>
+                        <option value="peter">Peter Krogh</option>
+                        <option value="elise" disabled>Elise Bach</option>
+                    </optgroup>
+                    <optgroup label="Jylland">
+                        <option value="anders">Anders Gissel</option>
+                        <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    </optgroup>
+                    <option value="thomas">Thomas</option>
+                </select>
+
+                <h4>Disable/enable option(s)</h4>
+                <button class="disableoptionbtntest" data-selectboxid="kollega-disabled" data-options="anders,nicolaj">Disable options Anders and Nicolaj</button> -
+                <button class="enableoptionsbtntest" data-selectboxid="kollega-disabled" data-options="soren,elise">Enable options Søren and Elise </button>
+
+                <h4>Disable/enable optgroup(s)</h4>
+                <button class="disableoptionbtntest" data-selectboxid="kollega-disabled" data-optgroup="Jylland">Disable optgroup Jylland</button> -
+                <button class="enableoptionsbtntest" data-selectboxid="kollega-disabled" data-optgroup="Jylland">Enable optgroup Jylland</button>
+                <br /><br />
+
+                <h3>Hidden</h3>
+                <p>First option is hidden</p>
+                <select id="kollega-hidden" class="custom-selectbox" name="kollega2" data-module="custom-selectbox" multiple>
+                    <option data-subtext="(nulstil)" hidden>Vælg kollega</option>
+                    <option value="andreas">Andreas</option>
+                    <optgroup label="København">
+                        <option value="soren">Søren Husted Nielsen</option>
+                        <option value="peter">Peter Krogh</option>
+                        <option value="elise">Elise Bach</option>
+                    </optgroup>
+                    <optgroup label="Jylland">
+                        <option value="anders">Anders Gissel</option>
+                        <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    </optgroup>
+                    <option value="thomas">Thomas</option>
+                </select>
+
+                <h4>Hide/unhide option(s)</h4>
+                <button class="hideOptionsbtntest" data-selectboxid="kollega-hidden" data-options="anders,nicolaj">Hide options Anders and Nicolaj</button> -
+                <button class="unhideOptionsbtntest" data-selectboxid="kollega-hidden" data-options="anders,nicolaj">Unhide options Anders and Nicolaj </button>
+
+                <h4>Hide/unhide optgroup(s)</h4>
+                <button class="hideOptionsbtntest" data-selectboxid="kollega-hidden" data-optgroup="København">Hide optgroup København</button> -
+                <button class="unhideOptionsbtntest" data-selectboxid="kollega-hidden" data-optgroup="København">Unhide optgroup København</button>
+
+                <br /><br />
+
+                <hr />
+                <a name="getsetvalue"></a>
+                <h2>Get and set value on selectbox</h2>
+
+                <h3>Single</h3>
+                <select id="kollega-value" class="custom-selectbox" name="kollega-value" data-module="custom-selectbox">
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <br />
+                <p>JS Ex. selectbox.value = peter </p>
+                <input type="text" class="setvalueinputtest" data-selectboxid="kollega-value" value="peter" />
+                <button class="setvaluebtntest" data-selectboxid="kollega-value">Set value</button>
+
+                <input type="text" class="getvalueinputtest" data-selectboxid="kollega-value"/>
+                <button class="getvaluebtntest" data-selectboxid="kollega-value">Get value</button>
+
+                <br />
+
+                <h3>Multiple</h3>
+                <select id="kollegaer-arrayvalue" class="custom-selectbox" name="kollegaer-arrayvalue" data-module="custom-selectbox" multiple>
+                    <option>Vælg kollegaer</option>
+                    <option value="anders">Anders Gissel</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                </select>
+
+                <br />
+                <p>JS Ex. selectbox.value = new Array('peter','soren') or selectbox.value = peter </p>
+                <input type="text" class="setvalueinputtest" data-selectboxid="kollegaer-arrayvalue" value="new Array('peter','soren')" />
+                <button class="setvaluebtntest" data-selectboxid="kollegaer-arrayvalue">Set value</button>
+
+                <input type="text" class="getvalueinputtest" data-selectboxid="kollegaer-arrayvalue"/>
+                <button class="getvaluebtntest" data-selectboxid="kollegaer-arrayvalue">Get value</button>
+
+                <br /><br />
+
+                <hr />
+                <a name="updateselect"></a>
+                <h2>Update optionslist dom and functionality for keyevents</h2>
+                <p>Ex. after added or removed options or optgroup from native selectbox</p>
+                <p>Call function selectbox.update()</p>
+                <p>HIDDEN ON PAGE LOAD: If the custom-selectbox i hidden on page load, call this as well to update states for keyevents</p>
+
+                <h3>Single</h3>
+                <select id="kollega-update" class="custom-selectbox" name="kollega-update" data-module="custom-selectbox">
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="elise">Christian Broström</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <p>Add new options and update optionslist dom</p>
+                <button class="updateoptionslistbtntest" data-selectboxid="kollega-update" data-options="[{&quot;value&quot;:&quot;dennis&quot;,&quot;name&quot;:&quot;Dennis Haulund Nielsen&quot;},{&quot;value&quot;:&quot;christopher&quot;,&quot;name&quot;:&quot;Christopher Bourlon&quot;}]">Add Dennis & Christopher</button>
+
+                <br /><br />
+
+                <h3>Multiple</h3>
+                <select id="kollega-update-multi" class="custom-selectbox" name="kollega-update" data-module="custom-selectbox" multiple>
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="elise">Christian Broström</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                </select>
+
+                <p>Add new options and update optionslist dom</p>
+                <button class="updateoptionslistbtntest" data-selectboxid="kollega-update-multi" data-options="[{&quot;value&quot;:&quot;dennis&quot;,&quot;name&quot;:&quot;Dennis Haulund Nielsen&quot;},{&quot;value&quot;:&quot;christopher&quot;,&quot;name&quot;:&quot;Christopher Bourlon&quot;}]">Add Dennis & Christopher</button>
+
+                <br /><br />
+
+                <hr />
+                <a name="maxheight"></a>
+                <h2>Max height with custom scrollbar</h2>
+                <p>Set data-maxheight with value of deserired max height.</p>
+                <p>Ex. data-maxheight="200"</p>
+
+                <select id="kollega-maxheight" class="custom-selectbox" name="kollega-maxheight" data-module="custom-selectbox" data-maxheight="200" multiple>
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="christian">Christian Broström</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                    <option value="dennis">Dennis Haulund Nielsen</option>
+                    <option value="christopher">Christopher Bourlon</option>
+                </select>
+
+                <br /><br />
+
+                <hr />
+                <a name="updatelabel"></a>
+                <h2>Update label</h2>
+                <p>You can disabled the functionality of updating the label text with selected options by adding data-updatelabel="false" to selectbox.</p>
+
+                <select id="kollega-updatelabel" class="custom-selectbox" name="kollega-updatelabel" data-module="custom-selectbox" data-updatelabel="false" multiple>
+                    <option>Vælg kollega</option>
+                    <option value="soren">Søren Husted Nielsen</option>
+                    <option value="christian">Christian Broström</option>
+                    <option value="nicolaj">Nicolaj Lund Hummel</option>
+                    <option value="peter">Peter Krogh</option>
+                    <option value="elise">Elise Bach</option>
+                    <option value="anders">Anders Gissel</option>
+                    <option value="dennis">Dennis Haulund Nielsen</option>
+                    <option value="christopher">Christopher Bourlon</option>
+                </select>
+
+                <br /><br />
+
+                <h2>No options</h2>
+                <select id="kollega" class="custom-selectbox" name="kollega" data-module="custom-selectbox" data-extraclass="noget"></select>
+
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+        </main>
+    </div>
+    <!--end.site-wrapper-->
+    <!--#include file="../shared-html/scripts.html" -->
+</body>
+
+</html>

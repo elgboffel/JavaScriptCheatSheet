@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>Notification</h2>
+
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Vis en notifikation med en tekst, som kan fjernes ved timeout, klik eller swipe.</p>
+                            <p>Man kan desuden tilføje et ikon og en progress bar.</p>
+                            <br>
+
+                            <h4>Javascript initialization eksempel</h4>
+                            <xmp>
+import createNotification from './modules/notification';
+
+createNotification({
+    icon: `<svg role="img"><use xlink:href="/static/dist/svg/_bundle.svg#right-arrow"></use></svg>`,
+    text: "Fjern denne notifikation med klik (eller swipe på mobil)",
+    progressBar: true,
+    duration: 5000
+})
+                            </xmp>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>js/notification/ (hele mappen)<br>scss/notification.scss</p>
+                            <h3>Ansvarlig</h3>
+                            <p>Lars Munkholm &lt;lar@dis-play.dk&gt;</p>
+                            <h3>Oprettet dato</h3>
+                            <p>27/11-2017</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1>Notification</h1>
+                        <button class="notification-no-timeout">Notification (no timeout)</button><br>
+                        <br>
+                        <button class="notification-plain">Notification (3s)</button><br>
+                        <br>
+                        <button class="notification-progressbar">Notification (5s, icon, progressbar)</button>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

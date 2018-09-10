@@ -1,0 +1,7 @@
+{
+  "cacheFirst": "cacheFirst",
+  "cacheNetworkRace": "cacheNetworkRace",
+  "cacheOnly": "cacheOnly",
+  "networkFirst": "networkFirst",
+  "networkOnly": "networkOnly"
+}

@@ -1,0 +1,43 @@
+//
+// BASE STYLING
+// This is where you define your generic resets
+// as well as "global" styling for the entire
+// site.
+// --------------------------------------------------
+
+// https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+html {
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 13px;
+    line-height: 1.5;
+
+    @include mq(xs) {
+        font-size: 14px;
+    }
+}
+
+* {
+    &,
+    &::before,
+    &::after {
+        box-sizing: inherit;
+    }
+}
+
+::-moz-selection {
+    background: $color__text;
+    color: $color__background;
+    text-shadow: none;
+}
+
+::selection {
+    background: $color__text;
+    color: $color__background;
+    text-shadow: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

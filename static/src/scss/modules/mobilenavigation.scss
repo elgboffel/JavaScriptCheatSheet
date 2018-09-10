@@ -1,0 +1,269 @@
+// Variables
+$sitenav--primary-color:		#e74f4f;
+$sitenav--secondary-color:		#222;
+$sitenav__btn--dist:			15px;
+$sitenav--z:					101;
+$sitenav--levels:				5 !default;
+$sitenav--sublevel-spacing:		20px;
+$sitenav--animation-speed:		.25s;
+$sitenav--animation-type:		cubic-bezier(.79, .44, .33, .8);
+
+// Mixins
+// Custom animation for the navigation
+@mixin sitenavAnimation($fromX: 0, $fromY: 0) {
+    [type=checkbox] ~ nav,
+    [type=checkbox] ~ ul {
+        transition: all #{$sitenav--animation-speed} #{$sitenav--animation-type};
+        transform: translate3d($fromX, $fromY, 0);
+    }
+
+    [type=checkbox]:checked ~ nav,
+    [type=checkbox]:checked ~ ul {
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// Or you could use animate-with-sass like so, supports both things
+// However, if using animate-with-sass, there won't be an animation when closing navigation
+// due to animations from animate-with-sass has a start position on 0 0 0, and animation of out screen by using ex: @include slideOutRight()
+// Use JS to help you here, or display:none - If you remove display:none, you'll see the effect;
+$use-slideInLeft: true;
+$use-slideInRight: true;
+$use-slideInUp: true;
+$use-slideOutLeft: true;
+$use-slideOutRight: true;
+$use-slideOutDown: true;
+
+@mixin siteAnimateWithSass($position) {
+    [type=checkbox] ~ nav,
+    [type=checkbox] ~ ul {
+        display: none;
+
+        @if $position == "top" {
+            @include slideOutDown();
+        }
+
+        @if $position == "left" {
+            @include slideOutLeft();
+        }
+
+        @if $position == "right" {
+            @include slideOutRight();
+        }
+    }
+
+    [type=checkbox]:checked ~ nav,
+    [type=checkbox]:checked ~ ul {
+        display: block;
+
+        @if $position == "top" {
+            @include slideInUp();
+        }
+
+        @if $position == "left" {
+            @include slideInLeft();
+        }
+
+        @if $position == "right" {
+            @include slideInRight();
+        }
+    }
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Links style for links and checkbox labels - Style accordingly to your design */
+@mixin linksStyle($color, $padding) {
+    color: $color;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: $padding;
+    display: block;
+}
+
+/* Specific classes for applying animations */
+.sitenav.animate-from-left {
+    @include sitenavAnimation(-100%);
+    //@include siteAnimateWithSass("left"); ////Uncomment if you wanna use animate-with-sass
+}
+
+.sitenav.animate-from-right {
+    @include sitenavAnimation(100%);
+    //@include siteAnimateWithSass("right"); //Uncomment if you wanna use animate-with-sass
+
+    // Add new transform value for each sub level. This is only necessary for animation from right
+    @for $i from 1 to $sitenav--levels {
+        [type=checkbox] ~ .sitenav__lvl-#{$i+1} {
+            transform: translate3d(calc(100% + #{$sitenav--sublevel-spacing * $i}), 0, 0);
+        }
+    }
+}
+
+.sitenav.animate-from-bottom {
+    @include sitenavAnimation(0, 100%);
+    //@include siteAnimateWithSass("top"); //Uncomment if you wanna use animate-with-sass
+}
+
+.sitenav {
+    /* Styling of the trigger button */
+    &__btn {
+        position: fixed;
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+        z-index: $sitenav--z + 1; // Make sure button stays on top of menu
+
+        svg {
+            fill: #c1c1c1;
+            width: 35px;
+            height: 35px;
+        }
+
+        &--top-left {
+            top: 22px;
+            left: $sitenav__btn--dist;
+        }
+
+        &--top-right {
+            top: 22px;
+            right: $sitenav__btn--dist;
+        }
+
+        &--bottom-left {
+            left: $sitenav__btn--dist;
+            bottom: $sitenav__btn--dist;
+        }
+
+        &--bottom-right {
+            right: $sitenav__btn--dist;
+            bottom: $sitenav__btn--dist;
+        }
+    }
+
+    /* critical styles - hide the checkbox input */
+    &__trigger,
+    [type=checkbox] {
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: 0 0;
+        border: 0;
+        opacity: 0;
+
+        &:focus + label {
+            /* IMPORTANT! Remember to style for the label when the trigger/checkbox has focus from keyboard tabing.
+            *   Tip: outlines doesn't curve with round objects = makes an ugly focus style
+            */
+            outline: none;
+
+            svg {
+                fill: $sitenav--primary-color;
+            }
+        }
+    }
+
+    [type=checkbox]:checked {
+        + label {
+            svg {
+                fill: #000;
+            }
+        }
+
+        &:focus + label svg {
+            fill: #fff;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        ul {
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            background: mix($sitenav--primary-color, #444, 98%);
+            width: calc(100% - #{$sitenav--sublevel-spacing});
+            height: 100%;
+            z-index: 2;
+            box-shadow: 4px -8px 16px -8px rgba(0, 0, 0, .4);
+
+            /* This pseudo elements prevents the user from being able to click on the underlying <ul> */
+            &:after {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                width: 200%;
+                height: 100%;
+                z-index: -1;
+                background-color: transparent;
+                content: '';
+            }
+        }
+    }
+
+    &__nav {
+        z-index: $sitenav--z;
+        overflow-x: hidden;
+        left: 0;
+        right: 0;
+        top: 60px;
+        bottom: 0;
+        position: fixed;
+        background: $sitenav--primary-color;
+    }
+
+    /* Back arrow  */
+    &__item--back {
+        position: relative;
+
+        svg {
+            top: 2px;
+            position: relative;
+            width: 20px;
+            height: 15px;
+            fill: #000;
+        }
+    }
+
+    /* Arrow to indicate item has children */
+    &--haschildren {
+        & > a,
+        & > label {
+            svg {
+                width: 20px;
+                height: 15px;
+                fill: #000;
+                position: absolute;
+                right: 25px;
+                top: 13px;
+            }
+        }
+    }
+
+    /* Custom style your design */
+    &__item {
+        border-bottom: 1px solid mix($sitenav--primary-color, #fff, 90%);
+
+        & > label {
+            position: relative; /*Critical for arrow to show in right place */
+            cursor: pointer;
+            @include linksStyle($sitenav--secondary-color, 12px 50px 12px 10px); /*Labels should display as links style */
+        }
+    }
+
+    /* Link styling */
+    a {
+        position: relative; /*Critical for arrow to show in right place */
+        @include linksStyle($sitenav--secondary-color, 12px 10px);
+    }
+}

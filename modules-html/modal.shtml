@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>Modals</h2>
+
+                            <h3>Description and dependencies</h3>
+                            <p>
+                                Class-based modal with unlimited instantiation ability and flexible setup. Main class (
+                                <code>modal</code>) has a lot of options and methods, while two helper functions (
+                                <code>alert()</code> and
+                                <code>confirm</code>, so you may want to alias them upon import) gives you shortcuts for displaying confirms
+                                and alerts without a lot of setup.
+                            </p>
+
+                            <h3>Files you need:</h3>
+                            <ul>
+                                <li>
+                                    <code>modal.js</code>
+                                </li>
+                                <li>
+                                    <code>modal.scss</code> (contains basic stuff - for theming, consider using the
+                                    <code>modifierClass</code> option in the modal options)</li>
+                            </ul>
+
+                            <h3>Made By</h3>
+                            <p>Anders Gissel &lt;agi@dis-play.dk&gt;</p>
+                        </div>
+                    </div>
+
+                    <!-- Top Navigation -->
+                    <div class="main clearfix">
+                        <div class="column">
+                            <button class="modal-trigger modal-trigger--alert">Regular alert-modal</button>
+                            <button class="modal-trigger modal-trigger--confirm">Confirm-modal with resulting replies</button>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

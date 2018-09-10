@@ -1,0 +1,124 @@
+/* Grid demo styles */
+.grid-demo {
+    padding: 10px 30px;
+}
+
+.grid-demo [class*="col-"] {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1em;
+    text-align: center;
+    line-height: 2;
+    background-color: #e5e1ea;
+    border: 1px solid #d1d1d1;
+}
+
+/* Actual megamenu styles */
+.bs-megamenu {
+    .nav,
+    .collapse,
+    .dropup,
+    .dropdown {
+        position: static;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        left: auto;
+    }
+
+    .nav.navbar-right {
+        .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    .bs-megamenu-content {
+        padding: 20px 30px;
+    }
+
+    .dropdown.bs-megamenu-fw {
+        .dropdown-menu {
+            left: auto;
+            right: 0;
+            width: 100%;
+        }
+    }
+
+    .list-unstyled {
+        ul {
+            min-width: 120px;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .panel-group {
+        width: 120px;
+    }
+
+    .thumbnail {
+        margin: 0;
+    }
+}
+
+/*
+
+!*!
+ * Yamm!3
+ * Yet another megamenu for Bootstrap 3
+ *
+ * http://geedmo.github.com/yamm3
+ *!
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+  position: static;
+}
+.yamm .container {
+  position: relative;
+}
+.yamm .dropdown-menu {
+  left: auto;
+}
+.yamm .nav.navbar-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.yamm .yamm-content {
+  padding: 20px 30px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu {
+  left: 0;
+  right: 0;
+}
+.list-unstyled,
+.list-unstyled ul { min-width: 120px }
+
+@media ( min-width: 767px ) {
+  .panel-group { width: 400px; }
+  .thumbnail { margin: 0; }
+}
+
+!* Grid demo styles *!
+.grid-demo {
+  padding: 10px 30px;
+}
+
+.grid-demo [class*="col-"] {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 1em;
+  text-align: center;
+  line-height: 2;
+  background-color: #e5e1ea;
+  border: 1px solid #d1d1d1;
+}
+
+
+*/

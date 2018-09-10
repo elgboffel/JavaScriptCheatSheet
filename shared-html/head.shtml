@@ -1,0 +1,34 @@
+<head>
+    <!-- !!! REMOVE THIS LINE WHEN GOING LIVE !!! -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta charset="utf-8">
+    <!-- Add to web.config -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Frontline</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--
+        Create a block of inline styling to display until the primary CSS is ready. You should use whatever
+        automatic inlining-capabilities your CMS provides:
+    -->
+    <style type="text/css"><!--#include virtual="/static/dist/css/critical.min.css" --></style>
+    <link rel="preload" href="/static/dist/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="/static/dist/css/main.min.css"></noscript>
+
+    <!-- Preload important stuff like your fonts, too. Remember "crossorigin", even if they're self-hosted!
+        <link rel="preload" href="/static/dist/fonts/some-font.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+        <link rel="preload" href="/static/dist/fonts/some-font.ttf"   as="font" type="font/ttf"   crossorigin="anonymous">
+    -->
+
+    <!-- You can use "prefetch" to preload other important assets (if you're not using HTTP/2 push) -->
+    <link rel="prefetch" href="/static/dist/js/main.min.js">
+
+    <!-- And you can tell the browser to pre-connect to other sites you know you are going to talk to eventually: -->
+    <link rel="dns-prefetch" href="https://cdn.polyfill.io">
+
+    <script type="text/javascript"><!--#include virtual="/static/dist/js/modernizr.js" --></script>
+</head>

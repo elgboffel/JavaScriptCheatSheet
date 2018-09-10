@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+                <div class="accordion">
+                    <input type="radio" class="accordion__reset" name="accordion" id="resetAccordion">
+                        <div class="accordion__item">
+                        <input class="accordion__radio" type="radio" name="accordion" id="tab1">
+                        <label for="tab1" class="accordion__trigger" role="tab">
+                            <h4 class="accordion__title"> Collapsible Group Item #1</h4>
+                            <label class="accordion__close" for="resetAccordion"></label>
+                        </label>
+                        <div role="tabpanel" class="accordion__content">
+                            <div class="accordion__body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde inventore fugit mollitia similique ab voluptate obcaecati
+                                    quo laborum nihil ipsum doloribus officia, perspiciatis, optio nulla distinctio itaque
+                                    aliquid, cupiditate eos dolore nostrum! Velit quia tempora molestias sed corporis quis
+                                    natus. Libero hic maxime adipisci, quasi reprehenderit magni quidem. Inventore dolore
+                                    illo adipisci dolor repellendus. Adipisci animi commodi, esse nulla quas blanditiis cumque
+                                    facilis minus labore cum voluptatum, tempore aperiam, quisquam explicabo! Minima ratione,
+                                    nemo amet animi tempora excepturi voluptas non sint, sapiente sequi, explicabo voluptates
+                                    reprehenderit assumenda. Atque reiciendis, nam quidem necessitatibus eaque sapiente.
+                                    Mollitia, soluta nemo qui error.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                        <input class="accordion__radio" type="radio" name="accordion" id="tab2">
+                        <label for="tab2" class="accordion__trigger" role="tab">
+                            <h4 class="accordion__title"> Collapsible Group Item #2</h4>
+                            <label class="accordion__close" for="resetAccordion"></label>
+                        </label>
+                        <div role="tabpanel" class="accordion__content">
+                            <div class="accordion__body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde inventore fugit mollitia similique ab voluptate obcaecati
+                                    quo laborum nihil ipsum doloribus officia, perspiciatis, optio nulla distinctio itaque
+                                    aliquid, cupiditate eos dolore nostrum! Velit quia tempora molestias sed corporis quis
+                                    natus. Libero hic maxime adipisci, quasi reprehenderit magni quidem. Inventore dolore
+                                    illo adipisci dolor repellendus. Adipisci animi commodi, esse nulla quas blanditiis cumque
+                                    facilis minus labore cum voluptatum, tempore aperiam, quisquam explicabo! Minima ratione,
+                                    nemo amet animi tempora excepturi voluptas non sint, sapiente sequi, explicabo voluptates
+                                    reprehenderit assumenda. Atque reiciendis, nam quidem necessitatibus eaque sapiente.
+                                    Mollitia, soluta nemo qui error.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                        <input class="accordion__radio" type="radio" name="accordion" id="tab3">
+                        <label for="tab3" class="accordion__trigger" role="tab">
+                            <h4 class="accordion__title"> Collapsible Group Item #3</h4>
+                            <label class="accordion__close" for="resetAccordion"></label>
+                        </label>
+                        <div role="tabpanel" class="accordion__content">
+                            <div class="accordion__body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque unde inventore fugit mollitia similique ab voluptate obcaecati
+                                    quo laborum nihil ipsum doloribus officia, perspiciatis, optio nulla distinctio itaque
+                                    aliquid, cupiditate eos dolore nostrum! Velit quia tempora molestias sed corporis quis
+                                    natus. Libero hic maxime adipisci, quasi reprehenderit magni quidem. Inventore dolore
+                                    illo adipisci dolor repellendus. Adipisci animi commodi, esse nulla quas blanditiis cumque
+                                    facilis minus labore cum voluptatum, tempore aperiam, quisquam explicabo! Minima ratione,
+                                    nemo amet animi tempora excepturi voluptas non sint, sapiente sequi, explicabo voluptates
+                                    reprehenderit assumenda. Atque reiciendis, nam quidem necessitatibus eaque sapiente.
+                                    Mollitia, soluta nemo qui error.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

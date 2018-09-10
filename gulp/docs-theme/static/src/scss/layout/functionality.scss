@@ -1,0 +1,45 @@
+.functionality {
+    &__group {
+        margin: 4rem -#{$gutter};
+        border: $border__width solid $bar__secondary--background;
+        border-top: 0;
+
+        @include mq(sm) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &-title {
+            position: relative;
+            margin: 0 -#{$border__width} 0 0;
+            padding: 1rem;
+            background: $bar__secondary--background;
+            color: $bar__secondary--text;
+            line-height: 1.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+
+            @include mq(md) {
+                position: sticky;
+                z-index: 3;
+                top: $page-header__height - 1px; // Minus 1 px to avoid subpixel rendering to eff it up
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    right: 0;
+                    border-right: 1rem solid $color__background;
+                    border-bottom: 1rem solid transparent;
+                }
+            }
+        }
+    }
+
+    &__list {
+        margin: 0;
+    }
+}

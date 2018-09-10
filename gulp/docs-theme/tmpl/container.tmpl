@@ -1,0 +1,392 @@
+<?js
+    const localNavigation = {};
+?>
+
+<section class="page-body__content">
+    <?js docs.forEach((doc, i) => { ?>
+        <?js
+        const classes = this.find({kind: 'class', memberof: doc.longname});
+        const mixins = this.find({kind: 'mixin', memberof: doc.longname});
+        const namespaces = this.find({kind: 'namespace', memberof: doc.longname});
+        const members = this.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        const methods = this.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        const typedefs = this.find({kind: 'typedef', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        const events = this.find({kind: 'event', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+
+        this.currentTypeDefs = {};
+        if (typedefs && typedefs.length && typedefs.forEach) {
+            typedefs.forEach(item => this.currentTypeDefs[item.name] = item.id);
+        }
+
+        if (doc.kind === 'mainpage' || (doc.kind === 'package')) {
+        ?>
+
+            <?js
+            if (doc.kind === 'mainpage' && this.globalsSorted) {
+                const globalsKeys = Object.keys(this.globalsSorted);
+                const globalsKeysCount = globalsKeys.length;
+                if (globalsKeys.length) {
+            ?>
+            <div class="incomplete">
+                <div class="incomplete__title">
+                    Incomplete documentation
+                </div>
+                <div class="incomplete__subtitle">
+                    At least <?js= globalsKeysCount ?> file<?js= globalsKeysCount === 1 ? '' : 's' ?> have incomplete documentation:
+                </div>
+                <dl>
+                <?js globalsKeys.forEach(key => { ?>
+                    <dt><?js= key ?></dt>
+                    <?js this.globalsSorted[key].forEach(value => { ?>
+                    <dd><?js= value ?></dd>
+                    <?js }); ?>
+                <?js }); ?>
+                </dl>
+            </div>
+            <?js }} ?>
+
+            <?js if (i === 0 && title !== 'Index'){ ?>
+
+                <header>
+                    <h1 class="searchable"><?js= title ?></h1>
+                </header>
+
+            <?js } ?>
+
+                <?js if (doc.kind === 'package' && (doc.name || doc.version)) { ?>
+
+                <h3><?js= doc.name ?> <?js= doc.version ?></h3>
+
+                <?js } else if (doc.readme) { ?>
+
+                <article class="page-body__readme searchable">
+                    <?js= doc.readme ?>
+                </article>
+
+                <?js } ?>
+
+        <?js } else { ?>
+
+            <header>
+                <?js
+                const titleLastSlash = title.lastIndexOf("/");
+                const titleLastSpace = title.lastIndexOf("> ");
+                const boldStart = Math.max(titleLastSlash, titleLastSpace) + 1;
+                const newTitle = title.substr(0, boldStart).replace(/[a-zA-Z0-9]\/[a-zA-Z0-9]/, match => match.replace('/', '/<wbr>')) + '<wbr><b>' + title.substr(boldStart) + '</b>';
+                ?>
+                <h1 class="searchable"><?js= newTitle ?></h1>
+
+
+                <?js if (!doc.longname || doc.kind !== 'module') { ?>
+
+                    <?js if ((doc.ancestors && doc.ancestors.length) || doc.variation) { ?>
+                        <h2>
+                            <?js if (doc.ancestors && doc.ancestors.length) { ?>
+                            <span class="ancestors"><?js= doc.ancestors.join('') ?></span>
+                            <?js } ?>
+                            <?js= doc.name ?>
+                            <?js if (doc.variation) { ?>
+                            <sup class="variation"><?js= doc.variation ?></sup>
+                            <?js } ?>
+                        </h2>
+                    <?js } ?>
+
+                    <?js if (doc.classdesc) { ?>
+                        <div class="page-body__header-description searchable"><?js= doc.classdesc ?></div>
+                    <?js } ?>
+
+                <?js } else if (doc.kind === 'module' && doc.modules) { ?>
+
+                    <?js doc.modules.forEach(module => { ?>
+                        <?js if (module.classdesc) { ?>
+                            <div class="page-body__header-description searchable"><?js= module.classdesc ?></div>
+                        <?js } ?>
+                    <?js }) ?>
+
+                <?js } ?>
+
+            </header>
+
+
+            <article class="documentation">
+                <?js
+                const details = this.partial('details.tmpl', doc).trim();
+                if (doc.description || doc.examples || details) {
+                ?>
+                <section class="documentation__section documentation__section--preface preface">
+                    <?js if (doc.description) { ?>
+                        <div class="preface__part preface__part--description searchable"><?js= doc.description ?></div>
+                    <?js } ?>
+
+                    <div class="preface__part preface__part--details"><?js= this.partial('details.tmpl', doc) ?></div>
+
+                    <?js if (doc.examples && doc.examples.length) { ?>
+                        <div class="preface__part preface__part--boxed preface__part--examples">
+                            <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+                            <?js= this.partial('examples.tmpl', doc.examples) ?>
+                        </div>
+                    <?js } ?>
+                </section>
+                <?js } ?>
+
+
+                <?js if ((doc.kind === 'scss' && doc.modules)) { ?>
+                    <?js Object.keys(doc.modules).forEach(moduleType => { ?>
+                        <?js localNavigation[moduleType] = doc.modules[moduleType].map(item => ({name: item.name, id: item.id})); ?>
+                        <section class="functionality__group functionality__group--scss">
+                            <h3 class="functionality__group-title"><?js= moduleType ?></h3>
+
+                            <dl class="functionality__list functionality__list--scss">
+                                <?js doc.modules[moduleType].forEach(module => { ?>
+                                    <?js= this.partial('scss.tmpl', module) ?>
+                                <?js }) ?>
+                            </dl>
+                        </section>
+                    <?js }) ?>
+                <?js } ?>
+
+
+                <?js if ((doc.kind === 'module' && doc.modules) || doc.kind === 'class') { ?>
+                    <?js if (doc.modules && doc.modules.length) { ?>
+                        <?js localNavigation.methods = methods.map(item => ({name: item.name, id: item.id})); ?>
+                        <section class="functionality__group functionality__group--methods">
+                            <h3 class="functionality__group-title">Methods</h3>
+
+                            <dl class="functionality__list functionality__list--methods">
+                                <?js doc.modules.forEach(module => { ?>
+                                    <?js= this.partial('method.tmpl', module) ?>
+                                <?js }) ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+                <?js } ?>
+
+
+                <?js if ((doc.augments && doc.augments.length) || (doc.requires && doc.requires.length)) { ?>
+                <section class="documentation__section documentation__section--essentials essentials">
+                    <?js if (doc.augments && doc.augments.length) { ?>
+                    <section class="essentials__group essentials__group--extends">
+                        <h3 class="essentials__group-title">Extends</h3>
+
+                        <ul class="essentials__list">
+                            <?js doc.augments.forEach(augment => { ?>
+                            <li><?js= this.linkto(augment, augment) ?></li>
+                            <?js }); ?>
+                        </ul>
+                    </section>
+                    <?js } ?>
+
+                    <?js if (doc.requires && doc.requires.length) { ?>
+                    <section class="essentials__group essentials__group--requires">
+                        <h3 class="essentials__title">Requires</h3>
+
+                        <ul class="essentials__list">
+                            <?js doc.requires.forEach(require => { ?>
+                            <li><?js= this.linkto(require, require) ?></li>
+                            <?js }); ?>
+                        </ul>
+                    </section>
+                    <?js } ?>
+                </section>
+                <?js } ?>
+
+
+                <section class="documentation__section documentation__section--functionality functionality">
+                    <?js
+                        if (doc.kind !== 'globalobj' && mixins && mixins.length) {
+                            localNavigation.mixins = mixins.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                        <section class="functionality__group functionality__group--mixins">
+                            <h3 class="functionality__group-title">Mixins</h3>
+
+                            <dl class="functionality__list functionality__list--mixins">
+                                <?js mixins.forEach(mixin => { ?>
+                                <div class="function function--method">
+                                    <div class="function__target" id="<?js= mixin.id ?>"></div>
+                                    <dt class="function__header">
+                                        <h4>
+                                            <?js= mixin.name ?>
+                                        </h4>
+                                    </dt>
+
+                                    <dd class="function__body">
+                                        <div class="function__body-part">
+                                            <?js= mixin.description ?>
+                                        </div>
+                                    </dd>
+                                </div>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+
+                    <?js
+                        if (doc.kind !== 'globalobj' && namespaces && namespaces.length) {
+                            localNavigation.namespaces = namespaces.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                        <section class="functionality__group functionality__group--namespaces">
+                            <h3 class="functionality__group-title">Namespaces</h3>
+
+                            <dl class="functionality__list functionality__list--namespaces">
+                                <?js namespaces.forEach(namespace => { ?>
+                                <div class="function function--method">
+                                    <div class="function__target" id="<?js= namespace.id ?>"></div>
+                                    <dt class="function__header">
+                                        <h4>
+                                            <?js= namespace.name ?>
+                                        </h4>
+                                    </dt>
+
+                                    <dd class="function__body">
+                                        <?js if (namespace.description) { ?>
+                                        <div class="function__body-part function__body-part--description">
+                                            <?js= namespace.description ?>
+                                        </div>
+                                        <?js } ?>
+                                        <?js if (namespace.properties) { ?>
+                                        <div class="function__body-part function__body-part--properties">
+                                            <?js= this.partial('schema.tmpl', namespace.properties) ?>
+                                        </div>
+                                        <?js } ?>
+                                    </dd>
+                                </div>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+
+                    <?js
+                        if (members && members.length && members.forEach) {
+                            localNavigation.members = members.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                        <section class="functionality__group functionality__group--members">
+                            <h3 class="functionality__group-title">Members</h3>
+
+                            <dl class="functionality__list functionality__list--members">
+                                <?js members.forEach(member => { ?>
+                                    <?js= this.partial('members.tmpl', member) ?>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+
+                    <?js
+                        if (methods && methods.length && methods.forEach) {
+                            localNavigation.methods = methods.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                        <section class="functionality__group functionality__group--methods">
+                            <h3 class="functionality__group-title">Methods</h3>
+
+                            <dl class="functionality__list functionality__list--methods">
+                                <?js methods.forEach(method => { ?>
+                                    <?js= this.partial('method.tmpl', method) ?>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+
+                    <?js
+                        if (doc.kind !== 'globalobj' && classes && classes.length) {
+                            classes.forEach(classModule => {
+                                const classMembers = this.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : classModule.longname});
+                                const classMethods = this.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : classModule.longname});
+
+                                classMethods.unshift({...classModule, constructor: true});
+
+                                if (classMembers && classMembers.length && classMembers.forEach) {
+                                    localNavigation[`${classModule.name} members`] = classMembers.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                    <section class="functionality__group functionality__group--members">
+                        <h3 class="functionality__group-title"><?js= classModule.name ?> members</h3>
+
+                        <dl class="functionality__list functionality__list--members">
+                            <?js classMembers.forEach(member => { ?>
+                            <?js= this.partial('members.tmpl', member) ?>
+                            <?js }); ?>
+                        </dl>
+                    </section>
+
+                    <?js
+                                }
+                                if (classMethods && classMethods.length && classMethods.forEach) {
+                                    localNavigation[`${classModule.name} methods`] = classMethods.map(item => ({name: item.name, id: item.id}));
+                    ?>
+
+                    <section class="functionality__group functionality__group--methods">
+                        <h3 class="functionality__group-title"><?js= classModule.name ?> methods</h3>
+
+                        <dl class="functionality__list functionality__list--methods">
+                            <?js classMethods.forEach(method => { ?>
+                            <?js= this.partial('method.tmpl', method) ?>
+                            <?js }); ?>
+                        </dl>
+                    </section>
+
+                    <?js
+                                }
+                            });
+                        }
+                    ?>
+
+                    <?js
+                        if (typedefs && typedefs.length && typedefs.forEach) {
+                            localNavigation['Type definitions'] = typedefs.map(item => ({name: item.name, id: item.id}));
+                    ?>
+                        <section class="functionality__group functionality__group--type-definitions">
+                            <h3 class="functionality__group-title">Type definitions</h3>
+
+                            <dl class="functionality__list functionality__list--type-definitions">
+                                <?js typedefs.forEach(typedef => { ?>
+                                <div class="function function--method">
+                                    <div class="function__target" id="<?js= typedef.id ?>"></div>
+                                    <dt class="function__header">
+                                        <h4>
+                                            <?js= typedef.name ?>
+                                        </h4>
+                                    </dt>
+
+                                    <dd class="function__body">
+                                        <?js if (typedef.type && typedef.type.names && typedef.type.names[0] === "function") { ?>
+                                        <figure class="function__body-part function__body-part--definition definition">
+                                            <span class="definition__arguments"><?js= (typedef.params.length > 1 ? '(' : '') + typedef.params.map(param => `<span class="definition__argument">${param.name}</span>`).join(', ') + (typedef.params.length > 1 ? ')' : '') ?></span> => <span class="definition__return-types">{...}</span>
+                                        </figure>
+                                        <?js } ?>
+                                        <?js if (typedef.description) { ?>
+                                        <div class="function__body-part function__body-part--description">
+                                            <?js= typedef.description ?>
+                                        </div>
+                                        <?js } ?>
+                                        <?js if (typedef.properties || typedef.params) { ?>
+                                        <div class="function__body-part function__body-part--properties">
+                                            <?js= this.partial('schema.tmpl', typedef.properties || typedef.params) ?>
+                                        </div>
+                                        <?js } ?>
+                                    </dd>
+                                </div>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+
+                    <?js
+                        if (events && events.length && events.forEach) {
+                    ?>
+                        <section class="functionality__group functionality__group--events">
+                            <h3 class="functionality__group-title">Events</h3>
+
+                            <dl class="functionality__list functionality__list--events">
+                                <?js events.forEach(event => { ?>
+                                    <?js= this.partial('method.tmpl', event) ?>
+                                <?js }); ?>
+                            </dl>
+                        </section>
+                    <?js } ?>
+                </section>
+            </article>
+        <?js } ?>
+    <?js }); ?>
+</section>
+
+<section class="page-body__navigation">
+    <?js= this.partial('navigation.tmpl', {localNavigation: localNavigation, longname: docType === "global" ? docType : docs[0].longname || ''}) ?>
+</section>

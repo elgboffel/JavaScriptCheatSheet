@@ -1,0 +1,26 @@
+﻿//
+// HELPERS
+// Various helper classes for use in the DOM.
+// --------------------------------------------------
+
+/// Hide an element using this class.
+/// @group helpers
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/// Apply the `visuallyhidden` mixin on an element.
+/// @group helpers
+/// @see {mixin} visuallyhidden
+.visuallyhidden {
+    @include visuallyhidden;
+}
+
+/// Clear floats with the clear fix.
+/// @group helpers
+/// @see {mixin} clearfix
+.clearfix {
+    *zoom: 1;
+    @include clearfix;
+}

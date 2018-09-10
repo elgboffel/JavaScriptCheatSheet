@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>lazyLoader</h2>
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Dette modul er lavet som et alternativ til imageHandler'en, hvor billeder først hentes idet de
+                                er synlige i viewporten.
+                                <br> initialiseres ved at kalde setupLazyImages()
+                                <br> Eks.:
+                            </p>
+                            <p>
+                                <xmp>
+                                    setupLazyImages(".lazy-img", 200); // @param1: Selector - class på lazy-images // @param2: BufferMargin - Antal pixels før
+                                    og efter viewporten billederne skal loade. // (Gør det muligt at preloade billederne
+                                    lige inden brugeren ser dem)
+
+                                </xmp>
+                            </p>
+                            <h3>Filer der skal bruges</h3>
+                            <p>
+                                js/utils/lazyloader.js
+                                <br/> js/utils/classList.js
+                                <br/> scss/Modules/lazyLoader.scss (optionel)
+                                <br/> lazyLoader HTML:
+                                <br/>
+                                <xmp>
+                                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/ffaa00/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/ffaa00/ffffff/?text=Lazy768x432"
+                                        data-src-md="http://placehold.it/1280x720/ffaa00/ffffff/?text=Lazy1280x720" data-alt="Alt text">
+                                        <noscript>
+                                            <img src="http://placehold.it/480x270/ffaa00/ffffff/?text=NoScriptLazyImage" alt="Alt text">
+                                        </noscript>
+                                    </div>
+                                </xmp>
+
+                                <br/> Eller som baggrundsbillede
+                                <br/>
+
+                                <xmp>
+                                    <div class="lazy-img lazy-bg" data-src-xs="http://placehold.it/480x270/ff3300/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/ff3300/ffffff/?text=Lazy768x432"
+                                        data-src-md="http://placehold.it/1280x720/ff3300/ffffff/?text=Lazy1280x720">
+                                    </div>
+                                </xmp>
+                            </p>
+
+                            <h3>Ansvarlig</h3>
+                            <p>Nicolaj Lund Nielsen - nni@dis-play.dk</p>
+                            <h3>Oprettet dato</h3>
+                            <p>23/02-2017</p>
+                        </div>
+                    </div>
+
+                    <h2>lazyLoader som genererer et IMG tag</h2>
+
+                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/ffaa00/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/ffaa00/ffffff/?text=Lazy768x432"
+                        data-src-md="http://placehold.it/1280x720/ffaa00/ffffff/?text=Lazy1280x720" data-alt="Lazy image 1">
+                        <noscript>
+                            <img src="http://placehold.it/480x270/ffaa00/ffffff/?text=NoScriptLazyImage" alt="Lazy image 1">
+                        </noscript>
+                    </div>
+                    <h2>lazyLoader som sætter baggrundsbilleder på en DIV</h2>
+
+                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/ff3300/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/ff3300/ffffff/?text=Lazy768x432"
+                        data-src-md="http://placehold.it/1280x720/ff3300/ffffff/?text=Lazy1280x720" data-alt="Lazy image 2">
+                        <noscript>
+                            <img src="http://placehold.it/480x270/ff3300/ffffff/?text=NoScriptLazyImage" alt="Lazy image 2">
+                        </noscript>
+                    </div>
+                    <h2>Demo fyld tekst...</h2>
+                    <p>Bacon ipsum dolor amet ball tip prosciutto hamburger meatloaf pork loin ham hock landjaeger jerky cupim
+                        frankfurter tail. Landjaeger ball tip jerky, frankfurter tri-tip meatball ham hock pork belly jowl
+                        shank tail ground round flank strip steak.
+                        <br>Corned beef ham boudin rump prosciutto filet mignon beef. Brisket pork loin sirloin landjaeger pork
+                        chop tenderloin pig doner turkey venison ground round jowl short ribs.</p>
+                    <p>Short loin hamburger shank porchetta cow ham, fatback turducken leberkas doner pastrami pancetta alcatra
+                        cupim. Rump meatball strip steak brisket shoulder prosciutto hamburger.
+                        <br>Meatloaf ball tip filet mignon swine porchetta. T-bone swine fatback bacon.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores culpa cumque deserunt doloribus
+                        fugit illo, illum, ipsa iure labore maxime nam nihil odit quia quos reprehenderit rerum veniam! Libero,
+                        non.
+                    </p>
+                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/38aac6/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/38aac6/ffffff/?text=Lazy768x432"
+                        data-src-md="http://placehold.it/1280x720/38aac6/ffffff/?text=Lazy1280x720" data-alt="Lazy image 3">
+                        <noscript>
+                            <img src="http://placehold.it/480x270/38aac6/ffffff/?text=NoScriptLazyImage" alt="Lazy image 3">
+                        </noscript>
+                    </div>
+                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/000000/ffffff/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/000000/ffffff/?text=Lazy768x432"
+                        data-src-md="http://placehold.it/1280x720/000000/ffffff/?text=Lazy1280x720" data-alt="Lazy image 4">
+                        <noscript>
+                            <img src="http://placehold.it/480x270/000000/ffffff/?text=NoScriptLazyImage" alt="Lazy image 4">
+                        </noscript>
+                    </div>
+                    <div class="lazy-img" data-src-xs="http://placehold.it/480x270/ffffff/000000/?text=Lazy480x270" data-src-sm="http://placehold.it/768x432/ffffff/000000/?text=Lazy768x432"
+                        data-src-md="http://placehold.it/1280x720/ffffff/000000/?text=Lazy1280x720" data-alt="Lazy image 5">
+                        <noscript>
+                            <img src="http://placehold.it/480x270/ffffff/000000/?text=NoScriptLazyImage" alt="Lazy image 5">
+                        </noscript>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

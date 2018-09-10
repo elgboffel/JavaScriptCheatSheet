@@ -1,0 +1,18 @@
+//
+// ANIMATIONS
+// Define your custom keyframe animations here.
+// Consider using animatewithsass from Bower for
+// generic animations, and variables for all timings
+// and easings.
+// --------------------------------------------------
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

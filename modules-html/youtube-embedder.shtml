@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>YouTuberEembeder</h2>
+
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Er lavet for at undgå at youTube henter alt video-data ind ved load.
+                                <br> Dette modul henter istedet først simple thumbnails af en videos poster-images ind og tilføjer
+                                et onClick eller onScroll-event.
+                                <br> I den tilknyttet eventhandler sættes hver video op, hvor Youtubes API først hentes.(APIet
+                                fylder fylder 400Kb! oO)</p>
+
+                            <h4>Javascript initialization eksempel</h4>
+                            <xmp>setupYoutubeEmbeds(".youtube-embed");</xmp>
+                            <br> For at loade/afspille videoerne ved scroll, kør nedenstående før initialiseringen:
+                            <br>
+                            <xmp>setActivateOnScroll(true);</xmp>
+                            <br> For ikke at vise YouTube's play ikoner, kør nedenstående før initialiseringen:
+                            <br>
+                            <xmp>setShowPlayIcon(false);</xmp>
+
+                            <h4>Basic html</h4>
+                            <xmp>
+                                <div class="youtube-embed" data-youtube-id="youtubeIdGoesHere"></div>
+                            </xmp>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>static/src/js/modules/youtubeEmbedder.js,
+                                <br> static/src/scss/modules/youtube-embedder.scss,
+                                <br> static/src/svg/youtube-play.svg,
+                                <br> src/js/utils/onScroll.js (hvis onScroll-methode er valgt),
+                                <br> src/js/utils/elementInViewport.js (hvis onScroll-methode er valgt)</p>
+                            <h3>Ansvarlig</h3>
+                            <p>Nicolaj Lund Nielsen - nni@dis-play.dk</p>
+                            <h3>Oprettet dato</h3>
+                            <p>09/03-2017</p>
+                            <h3>Ændret dato</h3>
+                            <p>08/06-2017 - Lars Munkholm (lar@dis-play.dk)</p>
+                            <p>*/*</p>
+                        </div>
+                    </div>
+
+                    <style>
+                        @media (min-width: 1024px) {
+                            .demo-box {
+                                float: left;
+                                width: 50%;
+                            }
+                        }
+                    </style>
+
+                    <div class="youtubeEmbedder">
+                        <h1>YouTubeEmbeder</h1>
+                        <!-- To test activateOnScroll change youtubeEmbedder-call in main.js to youtubeEmbedder(".youtube-embed", true, true) -->
+                        <div class="clearfix">
+                            <div class="demo-box">
+                                <div class="youtube-embed" data-youtube-id="HpVU6w_7fBk"></div>
+                            </div>
+                            <div class="demo-box">
+                                <div class="youtube-embed" data-youtube-id="KMT1FLzEn9I"></div>
+                            </div>
+                            <div class="demo-box">
+                                <div class="youtube-embed" data-youtube-id="WyMpZTba5Tc"></div>
+                            </div>
+                            <div class="demo-box">
+                                <div class="youtube-embed" data-youtube-id="pjj9newZBp0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

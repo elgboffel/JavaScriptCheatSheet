@@ -1,0 +1,178 @@
+<?js
+const data = obj;
+?>
+
+<div class="function function--method">
+    <div class="function__target" id="<?js= id ?>"></div>
+
+    <dt class="function__header">
+        <h4>
+            <?js if (data.deprecated) { ?>
+            <?js= this.partial('../svg/warning.svg') ?>
+            <?js } ?>
+            <?js= name + (obj.constructor === true ? ' (constructor)' : '') ?>
+        </h4>
+    </dt>
+
+    <dd class="function__body">
+        <figure class="function__body-part function__body-part--definition definition">
+            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + '<span class="definition__name">' + name + '</span>' + (kind !== 'event' ? data.signature : '') ?>
+        </figure>
+
+        <?js if (data.summary) { ?>
+        <div class="function__body-part function__body-part--summary searchable">
+            <?js= summary ?>
+        </div>
+        <?js } ?>
+
+        <?js if (data && data.description) { ?>
+        <div class="function__body-part function__body-part--description searchable">
+            <?js= data.description ?>
+        </div>
+        <?js } ?>
+
+        <?js
+        const detailsPartial = this.partial('details.tmpl', data).trim();
+        if (detailsPartial) {
+        ?>
+        <div class="function__body-part function__body-part--details">
+            <?js= detailsPartial ?>
+        </div>
+        <?js } ?>
+
+        <?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
+        <div class="function__body-part function__body-part--extends">
+            <h5>Extends</h5>
+            <div>
+                <ul>
+                    <?js data.augments.forEach(augment => { ?>
+                    <li><?js= this.linkto(augment, augment) ?></li>
+                    <?js }) ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (kind === 'event' && data && data.type && data.type.names) {?>
+        <div class="function__body-part function__body-part--type">
+            <h5>Type</h5>
+            <div>
+                <?js= this.partial('type.tmpl', data.type.names) ?>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data['this']) { ?>
+            <div class="function__body-part function__body-part--this">
+                <h5>This</h5>
+                <div>
+                    <ul>
+                        <li><?js= this.linkto(data['this'], data['this']) ?></li>
+                    </ul>
+                </div>
+            </div>
+        <?js } ?>
+
+        <?js if (data.params && data.params.length) { ?>
+            <div class="function__body-part function__body-part--parameters">
+                <h5>Parameters</h5>
+                <div>
+                    <?js= this.partial('schema.tmpl', params) ?>
+                </div>
+            </div>
+        <?js } ?>
+
+        <?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
+        <div class="function__body-part function__body-part--requires">
+            <h5>Requires</h5>
+            <div>
+                <ul>
+                    <?js data.requires.forEach(require => { ?>
+                    <li><?js= this.linkto(require) ?></li>
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.fires && fires.length) { ?>
+        <div class="function__body-part function__body-part--fires">
+            <h5>Fires</h5>
+            <div>
+                <ul>
+                    <?js fires.forEach(fire => { ?>
+                        <li><?js= this.linkto(fire) ?></li>
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.listens && listens.length) { ?>
+        <div class="function__body-part function__body-part--listens-to">
+            <h5>Listens to events</h5>
+            <div>
+                <ul>
+                    <?js listens.forEach(listen => { ?>
+                    <li><?js= this.linkto(listen) ?></li>
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.listeners && listeners.length) { ?>
+        <div class="function__body-part function__body-part--listeners">
+            <h5>Listeners of this event</h5>
+            <div>
+                <ul>
+                    <?js listeners.forEach(listener => { ?>
+                    <li><?js= this.linkto(listener) ?></li>
+                    <?js }); ?>
+                </ul>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.exceptions && exceptions.length) { ?>
+        <div class="function__body-part function__body-part--throws">
+            <h5>Throws</h5>
+            <div>
+                <?js if (exceptions.length > 1) { ?>
+                <ul>
+                    <?js exceptions.forEach(exception => { ?>
+                    <li><?js= this.partial('exceptions.tmpl', exception) ?></li>
+                    <?js }); ?>
+                </ul>
+                <?js
+                } else {
+                    exceptions.forEach(exception => {
+                ?>
+                    <?js= this.partial('exceptions.tmpl', exception) ?>
+                <?js
+                    });
+                }
+                ?>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.returns && returns.length) { ?>
+        <div class="function__body-part function__body-part--returns">
+            <h5>Returns</h5>
+            <div>
+                <?js= this.partial('schema.tmpl', returns) ?>
+            </div>
+        </div>
+        <?js } ?>
+
+        <?js if (data.examples && examples.length) { ?>
+            <div class="function__body-part function__body-part--examples">
+                <h5>Example<?js= examples.length > 1 ? 's' : '' ?></h5>
+                <div class="bust-1rem">
+                    <?js= this.partial('examples.tmpl', examples) ?>
+                </div>
+            </div>
+        <?js } ?>
+    </dd>
+</div>

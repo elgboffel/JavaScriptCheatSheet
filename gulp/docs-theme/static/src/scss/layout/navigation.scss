@@ -1,0 +1,189 @@
+.navigation-toggle {
+    display: none;
+}
+
+.navigation {
+    $navigationRoot: &;
+
+    display: none;
+    position: fixed;
+    z-index: 8;
+    top: $page-header__height;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - #{$page-header__height});
+    padding-top: 1rem;
+    background: $color__background;
+    user-select: none;
+    overflow: auto;
+
+    .navigation-toggle:checked ~ .page-body & {
+        display: block;
+        animation: navigation-fade-in .3s ease-out;
+    }
+
+    @include mq(sm) {
+        left: auto;
+        min-width: 25rem;
+        padding-left: 1rem;
+    }
+
+    @include mq(md) {
+        display: block;
+        position: static;
+        padding: 2rem 0 0;
+        min-width: 0;
+        max-height: none;
+        animation: none;
+    }
+
+    input {
+        display: none;
+    }
+
+    label {
+        position: relative;
+        display: block;
+        padding: .75rem 1rem;
+        background: darken($palette__gray--light, 8%);
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: background .3s ease-out;
+
+        @include mq(md) {
+            padding: .5rem 1rem;
+        }
+
+        &:hover {
+            background: darken($palette__gray--light, 5%);
+            transition-duration: .15s;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__groups {
+        margin-bottom: 2rem;
+    }
+
+    &__group {
+        position: relative;
+        border: $border__width solid;
+        margin-bottom: 1rem;
+        background: $palette__gray--light;
+
+        #{$navigationRoot}__local & {
+            border-color: $bar__secondary--background;
+
+            > label {
+                background: $bar__secondary--background;
+                color: $bar__secondary--text;
+            }
+        }
+
+        #{$navigationRoot}__overview & {
+            border-color: $bar__primary--background;
+
+            > label {
+                background: $bar__primary--background;
+                color: $bar__primary--text;
+            }
+        }
+
+        @include mq(md) {
+            &:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                top: -#{$border__width};
+                right: -#{$border__width};
+                border-right: 1rem solid $color__background;
+                border-bottom: 1rem solid transparent;
+            }
+        }
+
+        * {
+            border-color: inherit;
+        }
+
+        input:checked {
+            ~ ul {
+                display: block;
+            }
+        }
+
+        > input:checked {
+            + label {
+                border-bottom: #{$border__width} solid;
+                border-color: inherit;
+                transition-duration: 0s;
+            }
+        }
+
+        ul {
+            display: none;
+            color: $color__text;
+
+            input:checked {
+                + label {
+                    background: mix(darken($palette__gray--light, 8%), $bar__primary--background, 80%);
+                    transition-duration: 0s;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        border-left: .5rem solid;
+                        border-color: inherit;
+                        border-top: .5rem solid transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    &__folder {
+        margin: 0;
+
+        ul {
+            border-left: .5rem solid;
+            border-bottom: #{$border__width} solid;
+            border-color: inherit;
+        }
+    }
+
+    &__item {
+        margin: 0;
+
+        a {
+            display: block;
+            padding: .75rem 1rem;
+            color: inherit;
+            text-decoration: none;
+            background: $palette__gray--light;
+            -webkit-tap-highlight-color: transparent;
+            transition: background .3s ease-out;
+
+            @include mq(md) {
+                padding: .5rem 1rem;
+            }
+
+            &:hover {
+                background: lighten($palette__gray--light, 3%);
+                transition-duration: .15s;
+            }
+        }
+
+        &--active {
+            a {
+                font-weight: 700;
+            }
+        }
+    }
+}

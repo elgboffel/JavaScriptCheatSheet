@@ -1,0 +1,31 @@
+.click-and-drag {
+    height: 50vh;
+    padding: 40px;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    transition: transform .3s, background-color .3s;
+    position: relative;
+    background: rgba(#fff, .1);
+
+    &__item {
+        margin: 15px;
+        width: 50%;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        color: rgba(#111, .15);
+        box-shadow: inset 0 0 0 15px rgba(#111, .15);
+    }
+
+    &--active {
+        background: grey;
+        cursor: grabbing; //does not appear with IE 11 but the trick still works
+        transform: scale(1.05);
+    }
+}

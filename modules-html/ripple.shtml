@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+<!--<![endif]-->
+<!--#include file="../shared-html/head.shtml" -->
+<body>
+    <div class="site-wrapper">
+        <!--#include file="../shared-html/header-menu.html" -->
+        <main>
+            <div class="max-width site-content">
+
+        <div class="frontline-modules-description" id="description">
+            <div class="frontline-modules-description--wrapper">
+                <h2>Ripple Effect onCLick</h2>
+
+                <h3>Description and dependencies</h3>
+                <p>
+                  Add ripple class to the elements you want the ripple effect to appear on.
+                </p>
+
+                <h3>Files you need:</h3>
+                <ul>
+                    <li><code>ripple.js</code></li>
+                    <li><code>ripple.scss</code></li>
+                </ul>
+
+                <h3>Made By</h3>
+                <p>Jimmi Nielsen &lt;jni@dis-play.dk&gt;</p>
+            </div>
+        </div>
+
+        <!-- Top Navigation -->
+        <div class="main clearfix">
+            <div class="column">
+                <button class="ripple-effect" style="background: linear-gradient(135deg, #e570e7 0%, #79f1fc 100%); padding: 20px; border: 0; margin: auto; display: block; max-width: 250px; color: white;">Let's do the ripple</button>
+                <p style="text-align:center; margin-top: 30px;">Can be put on all elements</p>
+                <div style="width:300px; height:300px; text-align: center; background: linear-gradient(135deg, #e570e7 0%, #79f1fc 100%); margin: auto; color: white;" class="ripple-effect">div</div>
+            </div>
+        </div>
+
+    </div>
+        </main>
+    </div><!--end.site-wrapper-->
+<!--#include file="../shared-html/scripts.html" -->
+</body>
+</html>

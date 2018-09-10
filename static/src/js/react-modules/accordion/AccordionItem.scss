@@ -1,0 +1,44 @@
+@import "../../../scss/utilities/mixins";
+
+.accordion {
+    $parent: &;
+
+    &__title {
+        padding: 10px;
+        margin: 0;
+    }
+
+    &__trigger {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        border: solid 1px black;
+    }
+
+    &__item {
+        position: relative;
+        margin-bottom: 15px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &--active {
+            #{$parent}__content {
+                display: block;
+            }
+        }
+    }
+
+    &__content {
+        display: none;
+        overflow: hidden;
+        transition: max-height 500ms;
+    }
+
+    &__body {
+        padding: 10px;
+        animation-name: fadeInDown;
+        animation-duration: 200ms;
+    }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>imagehandler</h2>
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Dette modul er allerede en fast del af Frontline's master branch</p>
+                            <h3>Filer der skal bruges</h3>
+                            <p>
+                                dis.module.imagehandler.js
+                                <br/> dis.module.imagehandler.scss: Her findes lidt hjælpeklasser, men det er ikke nødvendigt
+                                for at det virker.
+                                <br/>
+                                <br/> HTML:
+                                <br/>
+                                <xmp>
+                                    <div class="imagehandler" data-src-xs="http://placehold.it/480x270" data-src-sm="http://placehold.it/768x432" data-src-md="http://placehold.it/1280x720"
+                                        data-src-lg="http://placehold.it/1920x1080" data-alt="Bacon bacon bacon">
+                                        <noscript>
+                                            <!-- Search engines indexes images in NOSCRIPT tags.
+                            Remember that (Google) robots ignores attributes in url's, so you should use clean ones -->
+                                            <img src="http://placehold.it/100x56" alt="Bacon bacon bacon">
+                                        </noscript>
+                                    </div>
+                                </xmp>
+
+                                <br/> Eller som baggrundsbillede på en DIV:
+                                <br/> Her bruges hjælpeklasser fra dis.module.imagehandler.scss
+                                <br/>
+
+                                <xmp>
+                                    <div class="ratio ratio-16-9">
+                                        <div class="bg-imagehandler" data-src-xs="http://placehold.it/480x270" data-src-sm="http://placehold.it/768x432" data-src-md="http://placehold.it/1280x720"
+                                            data-src-lg="http://placehold.it/1920x1080" data-alt="Bacon bacon bacon">
+                                        </div>
+                                    </div>
+                                </xmp>
+                            </p>
+
+                            <h3>Ansvarlig</h3>
+                            <p>Bjarni Olsen - bjo@dis-play.dk
+                                <br/>Anders Gissel - agi@dis-play.dk</p>
+                            <h3>Oprettet dato</h3>
+                            <p>13/08-2015</p>
+                            <h3>Ændret dato</h3>
+                            <p>8/08-2016</p>
+                        </div>
+                    </div>
+
+                    <h2>Imagehandler som genererer et IMG tag</h2>
+
+                    <!-- See comments in _imagehandler.scss and dis.module.imagehandler.js -->
+                    <div class="imagehandler" data-src-xs="http://placehold.it/480x270" data-src-sm="http://placehold.it/768x432" data-src-md="http://placehold.it/1280x720"
+                        data-src-lg="http://placehold.it/1920x1080" data-alt="Bacon bacon bacon">
+                        <noscript>
+                            <!-- Search engines indexes images in NOSCRIPT tags.
+                                Remember that (Google) robots ignores attributes in url's, so you should use clean ones -->
+                            <img src="http://placehold.it/100x56" alt="Bacon bacon bacon">
+                        </noscript>
+                    </div>
+
+                    <h2>Imagehandler som sætter baggrundsbilleder på en DIV</h2>
+
+                    <div class="ratio ratio-16-9">
+                        <div class="bg-imagehandler" data-src-xs="http://placehold.it/480x270" data-src-sm="http://placehold.it/768x432" data-src-md="http://placehold.it/1280x720"
+                            data-src-lg="http://placehold.it/1920x1080" data-alt="Bacon bacon bacon">
+                        </div>
+                    </div>
+
+                    <p>Bacon ipsum dolor amet ball tip prosciutto hamburger meatloaf pork loin ham hock landjaeger jerky cupim
+                        frankfurter tail. Landjaeger ball tip jerky, frankfurter tri-tip meatball ham hock pork belly jowl
+                        shank tail ground round flank strip steak. Corned beef ham boudin rump prosciutto filet mignon beef.
+                        Brisket pork loin sirloin landjaeger pork chop tenderloin pig doner turkey venison ground round jowl
+                        short ribs.</p>
+                    <p>Short loin hamburger shank porchetta cow ham, fatback turducken leberkas doner pastrami pancetta alcatra
+                        cupim. Rump meatball strip steak brisket shoulder prosciutto hamburger. Meatloaf ball tip filet mignon
+                        swine porchetta. T-bone swine fatback bacon.</p>
+
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

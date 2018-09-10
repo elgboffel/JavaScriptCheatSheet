@@ -1,0 +1,44 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "rules": {
+    "selector-descendant-combinator-no-non-space": true,
+    "block-closing-brace-empty-line-before": "never",
+    "block-closing-brace-newline-after": ["always", {"ignoreAtRules": ["if", "else"]}],
+    "block-closing-brace-newline-before": "always",
+    "block-opening-brace-newline-after": "always",
+    "property-no-unknown": [true, {"severity": "warning", "ignoreProperties": ["/font-smooth/", "font-smooth"]}],
+    "property-no-vendor-prefix": [true, {"ignoreProperties": ["/font-smoothing/", "font-smoothing"]}],
+    "no-descending-specificity": null,
+    "selector-max-id": [0, {"severity": "error", "message": "Avoid styling from IDs - use classes instead."}],
+    "font-family-no-duplicate-names": true,
+    "font-family-no-missing-generic-family-keyword": true,
+    "number-max-precision": 3,
+    "number-no-trailing-zeros": true,
+
+    "at-rule-name-case": ["lower", {"severity": "warning"}],
+    "function-name-case": ["lower", {"ignoreFunctions": ["/DXImageTransform/", "DXImageTransform"]}],
+    "media-feature-name-case": ["lower", {"severity": "warning"}],
+    "property-case": ["lower", {"severity": "warning"}],
+    "selector-pseudo-class-case": ["lower", {"severity": "warning"}],
+    "selector-pseudo-element-case": ["lower", {"severity": "warning"}],
+    "selector-type-case": ["lower", {"severity": "warning"}],
+    "unit-case": ["lower", {"severity": "warning"}],
+    "value-keyword-case": ["lower", {"severity": "warning"}],
+
+    "indentation": 4,
+    "max-empty-lines": 3,
+    "selector-max-type": 4,
+    "value-list-comma-newline-after": "always-multi-line",
+    "value-list-comma-space-after": "always",
+    "value-list-max-empty-lines": 0,
+
+    "rule-empty-line-before": ["always", {"except": ["first-nested"], "ignore": ["after-comment", "first-nested"]}],
+    "function-calc-no-unspaced-operator": true,
+    "function-whitespace-after": "always",
+    "media-feature-colon-space-after": "always",
+    "declaration-colon-space-after": "always",
+    "declaration-colon-space-before": "never",
+    "no-missing-end-of-source-newline": true,
+    "comment-empty-line-before": ["always", {"except": ["first-nested"], "ignore": ["after-comment", "stylelint-commands"]}]
+  }
+}

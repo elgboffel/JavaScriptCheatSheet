@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+                <div class="click-and-drag" data-module="click-and-drag">
+                    <div class="click-and-drag__item">01</div>
+                    <div class="click-and-drag__item">02</div>
+                    <div class="click-and-drag__item">03</div>
+                    <div class="click-and-drag__item">04</div>
+                    <div class="click-and-drag__item">05</div>
+                    <div class="click-and-drag__item">06</div>
+                    <div class="click-and-drag__item">07</div>
+                    <div class="click-and-drag__item">08</div>
+                    <div class="click-and-drag__item">09</div>
+                    <div class="click-and-drag__item">10</div>
+                    <div class="click-and-drag__item">11</div>
+                    <div class="click-and-drag__item">12</div>
+                    <div class="click-and-drag__item">13</div>
+                    <div class="click-and-drag__item">14</div>
+                    <div class="click-and-drag__item">15</div>
+                    <div class="click-and-drag__item">16</div>
+                    <div class="click-and-drag__item">17</div>
+                    <div class="click-and-drag__item">18</div>
+                    <div class="click-and-drag__item">19</div>
+                    <div class="click-and-drag__item">20</div>
+                    <div class="click-and-drag__item">21</div>
+                    <div class="click-and-drag__item">22</div>
+                    <div class="click-and-drag__item">23</div>
+                    <div class="click-and-drag__item">24</div>
+                    <div class="click-and-drag__item">25</div>
+                    <div class="click-and-drag__item">26</div>
+                    <div class="click-and-drag__item">27</div>
+                    <div class="click-and-drag__item">28</div>
+                    <div class="click-and-drag__item">29</div>
+                    <div class="click-and-drag__item">30</div>
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

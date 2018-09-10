@@ -1,0 +1,141 @@
+
+
+.modal {
+
+
+    &__wrapper,
+    &__background {
+        opacity: 0;
+        pointer-events: none;
+
+        // Please note: the script listens for transition-events, so removing transitions outright might not be the
+        // best idea. If you do, be sure to set "useTransitions: false" while instantiating modals, or clear the
+        // "transitionEndEventName" constant in the script to disable transition-events for all modals everywhere.
+        // But again: please use transitions. They are neat.
+        transition-property: opacity, transform;
+        transition-duration: .4s;
+        transition-timing-function: ease-out;
+
+        // Warning: these (especially "will-change") automatically offloads these objects to the GPU, which increases
+        // rendering speed dramatically,  but may have a detrimental effect on the rendering quality. If you
+        // experience problems, disable/remove them.
+        will-change: opacity, transform;
+        backface-visibility: hidden;
+
+
+
+        &--visible {
+            opacity: 1;
+            transition-timing-function: ease-out;
+            pointer-events: auto;
+        }
+    }
+
+
+    &__background {
+        position: fixed;
+        top: -100px;
+        bottom: -100px;
+        width: 100%;
+        background: rgba(#000, .8);
+
+        @for $i from 0 through 10 {
+            &--level#{$i} {
+                z-index: (500 + $i);
+            }
+        }
+    }
+
+
+    &__wrapper {
+
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 90%;
+        transform: translate(-50%, -20%);
+        background: #fff;
+        padding: 15px;
+        font-size: 16px;
+
+        @include mq(sm) {
+            width: 600px;
+        }
+
+        @for $i from 0 through 10 {
+            &--level#{$i} {
+                z-index: (501 + $i);
+            }
+        }
+
+        &--visible {
+            transform: translate(-50%, -50%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .8);
+        }
+    }
+
+
+    &__close {
+        position: absolute;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        pointer-events: auto;
+
+        @include mq(sm) {
+            top: 10px;
+            right: 10px;
+        }
+
+        &:before,
+        &:after {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            content: "";
+            background: #000;
+            width: 80%;
+            height: 3px;
+            transform-origin: 50% 50%;
+        }
+
+        &:before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:after {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
+
+
+    &__header {
+        margin: 10px 0 20px;
+    }
+
+    &__title-wrapper {
+        // Style title wrapper here
+    }
+
+
+    &__title {
+        // Style title here
+    }
+
+    &__subtitle {
+        // Style subtitle here
+    }
+
+
+    &__content {
+        &-inner {
+            // Style inner content here
+        }
+    }
+}

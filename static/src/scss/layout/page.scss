@@ -1,0 +1,165 @@
+.navigation {
+    $root: &;
+
+    &__nav {
+        width: 100%;
+        position: relative;
+        height: 80px;
+        text-align: center;
+        margin: 0 auto;
+        user-select: none;
+
+        input[type=checkbox] {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        label {
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            padding: 15px;
+            color: #424242;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            overflow: hidden;
+            transition: 200ms ease-in-out;
+
+            &:hover {
+                color: #ffffff;
+            }
+
+            &.animated {
+                border: 3px solid #424242;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    height: 0;
+                    left: 50%;
+                    top: 50%;
+                    width: 150%;
+                    z-index: -1;
+                    transition: all 800ms cubic-bezier(.23, 1, .32, 1);
+                    background: #424242;
+                    transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+                }
+
+                &:hover:after {
+                    height: 450%;
+                    text-shadow: none;
+                }
+            }
+
+            &.active {
+                background: #424242;
+                color: #ffffff;
+            }
+        }
+
+        &__modules,
+        &__snippets {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        &__modules {
+            &__label {
+                position: relative;
+                display: inline-block;
+                z-index: 10;
+            }
+        }
+
+        &__snippets {
+            &__label {
+                position: relative;
+                display: inline-block;
+                z-index: 10;
+            }
+        }
+
+        #{$root}__nav__modules__offcanvas,
+        #{$root}__nav__snippets__offcanvas {
+            transition: all 600ms cubic-bezier(.77, 0, .175, 1);
+            background: #424242;
+            bottom: 0;
+            font-size: 14px;
+            height: 100%;
+            list-style: none;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            width: 300px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 10px;
+            overflow-y: auto;
+
+            h2 {
+                text-transform: uppercase;
+                color: #FFFFFF;
+                font-size: 18px;
+                letter-spacing: 1px;
+                margin: 30px 0;
+            }
+
+            ul {
+                list-style: none;
+                text-align: left;
+
+                li {
+                    margin: 10px 0;
+
+                    a {
+                        text-transform: uppercase;
+                        color: #ffffff;
+                        font-size: 14px;
+                        text-decoration: none;
+                        transition: 200ms ease-in-out;
+                        display: block;
+
+                        &:before {
+                            content: "-";
+                            position: absolute;
+                            left: 25px;
+                        }
+
+                        &:hover {
+                            margin-left: 5px;
+                            color: rgb(223, 223, 223);
+                        }
+                    }
+                }
+            }
+        }
+
+        #{$root}__nav__modules__offcanvas {
+            left: 0;
+            transform: translateX(-100%);
+            visibility: hidden;
+            opacity: 0;
+
+            &.active {
+                transform: translateX(0%);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        #{$root}__nav__snippets__offcanvas {
+            right: 0;
+            transform: translateX(100%);
+            visibility: hidden;
+            opacity: 0;
+
+            &.active {
+                transform: translateX(0%);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}

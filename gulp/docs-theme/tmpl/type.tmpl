@@ -1,0 +1,13 @@
+<?js
+    const data = obj;
+    data.forEach((name, i) => {
+?>
+<span class="param-type nowrap">
+    <?js if (typeof this.currentTypeDefs[name] !== 'undefined') { ?>
+    <a href="#<?js= this.currentTypeDefs[name] ?>" title="Jump to type definition for <?js= name ?>"><?js= this.linkto(name, this.htmlsafe(name)) ?></a>
+    <?js } else { ?>
+    <?js= this.linkto(name, this.htmlsafe(name)) ?>
+    <?js } ?>
+</span>
+<?js if (i < data.length-1) { ?><br><?js } ?>
+<?js }); ?>

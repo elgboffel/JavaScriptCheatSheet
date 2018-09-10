@@ -1,0 +1,52 @@
+<?js
+const data = obj;
+?>
+
+<div class="function function--member">
+    <div class="function__target" id="<?js= id ?>"></div>
+
+    <dt class="function__header">
+        <h4>
+            <?js if (data.deprecated) { ?>
+            <?js= this.partial('../svg/warning.svg') ?>
+            <?js } ?>
+            <?js= name ?>
+        </h4>
+    </dt>
+
+    <dd class="function__body">
+        <figure class="function__body-part function__body-part--definition definition">
+            <?js= data.attribs + '<span class="definition__name">' + name + '</span>' + (data.signature ? data.signature : '') ?>
+        </figure>
+
+        <?js if (data.summary) { ?>
+        <div class="function__body-part function__body-part--summary searchable">
+            <?js= summary ?>
+        </div>
+        <?js } ?>
+
+        <?js if (data && data.description) { ?>
+        <div class="function__body-part function__body-part--description searchable">
+            <?js= data.description ?>
+        </div>
+        <?js } ?>
+
+        <?js
+        const detailsPartial = this.partial('details.tmpl', data).trim();
+        if (detailsPartial) {
+        ?>
+        <div class="function__body-part function__body-part--details">
+            <?js= detailsPartial ?>
+        </div>
+        <?js } ?>
+
+        <?js if (data.examples && examples.length) { ?>
+        <div class="function__body-part function__body-part--examples">
+            <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+            <div class="bust-1rem">
+                <?js= this.partial('examples.tmpl', examples) ?>
+            </div>
+        </div>
+        <?js } ?>
+    </dd>
+</div>

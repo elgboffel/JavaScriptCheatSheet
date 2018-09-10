@@ -1,0 +1,13 @@
+<?js
+    const data = obj;
+    data.forEach(example => {
+?>
+    <figure class="code-block">
+        <?js if ((example.caption && example.caption.trim()) || (example.description && example.description.trim())) { ?>
+            <figcaption class="searchable"><?js= example.caption || example.description ?></figcaption>
+        <?js } ?>
+        <div class="code-block__code">
+            <pre><code class="language-<?js= example.lang || example.type ?>"><?js~ example.code.trim() ?></code></pre>
+        </div>
+    </figure>
+<?js }); ?>

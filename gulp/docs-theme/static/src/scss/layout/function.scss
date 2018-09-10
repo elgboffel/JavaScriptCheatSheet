@@ -1,0 +1,183 @@
+.function {
+    $functionRoot: &;
+
+    margin: 4rem 0;
+    position: relative;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__target {
+        position: absolute;
+        left: 0;
+        top: -#{$page-header__height};
+        pointer-events: none;
+
+        @include mq(md) {
+            top: calc(-#{$page-header__height} - 3.5rem + #{$border__width * 2});
+        }
+
+        &:target {
+            ~ #{$functionRoot}__header {
+                h4 {
+                    color: $palette__red;
+                    animation: bounce-right 1s;
+                }
+            }
+        }
+    }
+
+    &__header {
+        position: relative;
+        margin-top: -#{$border__width};
+        border-top: $border__width solid $bar__secondary--background;
+        border-bottom: $border__width solid $bar__secondary--background;
+        background: $palette__gray--light;
+
+        @include mq(md) {
+            position: sticky;
+            z-index: 2;
+            top: calc(#{$page-header__height - 1px} + 3.5rem - #{$border__width}); // Minus 1 px to avoid subpixel rendering to eff it up
+            backface-visibility: hidden;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-left: .5rem solid;
+            border-color: $bar__secondary--background;
+            border-top: .5rem solid transparent;
+        }
+
+        h4 {
+            display: inline-block;
+            margin: 0;
+            padding: .5rem 1rem;
+
+            svg {
+                height: 1.25em;
+                width: 1.25em;
+                vertical-align: top;
+                fill: $palette__red;
+            }
+        }
+    }
+
+    &__body {
+        margin: 0;
+        border-left: .5rem solid $bar__secondary--background;
+
+        &-part {
+            $functionBodyPartRoot: &;
+            padding: 1rem;
+
+            @include mq(md) {
+                padding: 1.5rem 1rem;
+
+                &--definition + &,
+                &:first-child {
+                    padding-top: 1rem;
+                }
+
+                &:last-child {
+                    padding-bottom: 1rem;
+                }
+            }
+
+            &--definition {
+                margin: 0;
+                padding: .5rem 1rem;
+                border-bottom: 1px solid $palette__gray;
+                font-size: .9em;
+                white-space: nowrap;
+                overflow-y: hidden;
+                overflow-x: auto;
+
+                wbr {
+                    display: none;
+                }
+
+                @include mq(sm) {
+                    white-space: normal;
+                    overflow-y: visible;
+                    overflow-x: visible;
+
+                    wbr {
+                        display: unset;
+                    }
+                }
+            }
+
+            &--summary,
+            &--description {
+                max-width: 50rem;
+
+                @include mq(lg) {
+                    min-width: 50rem;
+                    max-width: none;
+                    width: 70%;
+                }
+            }
+
+            &--details {
+                #{$functionBodyPartRoot}--summary + &,
+                #{$functionBodyPartRoot}--description + & {
+                    padding-top: 0;
+                }
+            }
+
+            &--type {
+                ul {
+                    display: inline-block;
+                    border: 1px solid $palette__gray--dark;
+                    margin: 0;
+                    padding: .5rem 1rem;
+                    list-style: none;
+                    background: $palette__gray--light;
+                    vertical-align: top;
+                }
+            }
+
+            &--examples {
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                > div {
+                    border-top: 1px solid $bar__tertiary--background;
+                    border-image: linear-gradient(to right, $bar__secondary--background, $bar__tertiary--background 5%, $bar__tertiary--background 10%, $bar__secondary--background) 100% 1;
+                }
+            }
+
+            h5 {
+                position: relative;
+                display: inline-block;
+                margin: 0;
+                padding: .5em 1rem;
+                background: $bar__tertiary--background;
+                font-size: 1em;
+                font-weight: normal;
+                color: $bar__tertiary--text;
+                vertical-align: bottom;
+                cursor: default;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    z-index: 1;
+                    top: 0;
+                    right: 0;
+                    border-right: 10px solid $color__background;
+                    border-bottom: 10px solid transparent;
+                }
+            }
+        }
+    }
+}

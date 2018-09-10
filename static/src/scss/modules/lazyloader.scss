@@ -1,0 +1,34 @@
+/* ATTENTION:
+ This styling is purely for example purposes.
+ The only requirement is that image-containers (in this case .lazy-img) needs height/min-height for lazyLoader to work */
+.lazy-img {
+    width: 100%;
+    max-width: 1280px;
+    min-height: 200px;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid red;
+    background-color: #fff;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    @include mq(xs){
+        min-height: 270px;
+    }
+
+    @include mq(sm){
+        min-height: 432px;
+    }
+
+    @include mq(md){
+        min-height: 674px;
+    }
+
+    &.lazy-loaded:not(.lazy-bg){
+        min-height: 0;
+        border-color: green;
+    }
+}

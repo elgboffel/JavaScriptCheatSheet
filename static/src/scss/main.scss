@@ -1,0 +1,24 @@
+﻿//--------------------------------------
+// Created:
+// Created by:
+// Modifiers:
+//--------------------------------------
+
+// Basic setup. Most of the really basic stuff is included in "critical.scss".
+@import "base/variables";
+
+// Mixins, helpers and similar. "Helpers" are included in the critical file.
+@import "utilities/functions";
+@import "utilities/mixins";
+@import "utilities/placeholders";
+@import "utilities/animations";
+
+// Layout is included in the critical file.
+
+// All modules
+@import "modules/**/*.scss";
+// All modules
+@import "snippets/**/*.scss";
+
+// All NON-CRITICAL components, since the critical ones should've been loaded using the inline styling already (see "critical.scss").
+@import "components/noncritical/**/*.scss";

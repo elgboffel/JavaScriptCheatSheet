@@ -1,0 +1,60 @@
+.preface {
+    &__part {
+        margin: 2rem 0;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+
+        &--boxed {
+            margin: 4rem -#{$gutter};
+            border: $border__width solid $bar__primary--background;
+            border-top: 0;
+
+            @include mq(sm) {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            h3 {
+                position: relative;
+                margin: 0 -#{$border__width} 0 0;
+                padding: 1rem;
+                background: $bar__primary--background;
+                color: $bar__primary--text;
+                line-height: 1.5rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                cursor: default;
+
+                @include mq(md) {
+                    position: sticky;
+                    z-index: 3;
+                    top: $page-header__height - 1px; // Minus 1 px to avoid subpixel rendering to eff it up
+                    white-space: nowrap;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        z-index: 2;
+                        top: 0;
+                        right: 0;
+                        border-right: 1rem solid $color__background;
+                        border-bottom: 1rem solid transparent;
+                    }
+                }
+            }
+        }
+
+        &--description {
+            max-width: 50rem;
+
+            @include mq(lg) {
+                min-width: 50rem;
+                max-width: none;
+                width: 70%;
+            }
+        }
+    }
+}

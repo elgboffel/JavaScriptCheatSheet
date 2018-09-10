@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>
+<html lang="da" class="no-js lt-ie9"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="da" class="no-js">
+    <!--<![endif]-->
+    <!--#include file="../shared-html/head.shtml" -->
+
+    <body>
+        <div class="site-wrapper">
+            <!--#include file="../shared-html/header-menu.html" -->
+            <main>
+
+                <div class="max-width site-content">
+
+                    <div class="frontline-modules-description" id="description">
+                        <div class="frontline-modules-description--wrapper">
+                            <h2>Scroll to top</h2>
+
+                            <h3>Beskrivelse og afhængigheder</h3>
+                            <p>Når man scroller ned ad en side, og begynder at scrolle op igen, vises en knap til at gå til
+                                toppen.
+                            </p>
+                            <p>Man kan indstille, hvor mange skærmhøjder man skal scrolle ned på siden, før knappen kan
+                                <i>kan</i> vises.
+                                <br>Og hvor mange skærmhøjder man efterfølgende skal scrolle opad, før knappen bliver synlig.</p>
+                            <p>Knappen skjules igen, hvis brugeren bevæger sig nedad igen, eller kommer 1 skærmhøjde fra toppen
+                                af siden.</p>
+
+                            <h4>Javascript initialization eksempel</h4>
+                            <xmp>
+                                import ScrollToTop from './modules/scrollToTop'; let scrollToTop = new ScrollTopTop(document.querySelector(".scrolltotop")
+                            </xmp>
+                            eller
+                            <xmp>
+                                import ScrollToTop from './modules/scrollToTop'; bootstrapper({ 'scrolltotop': ScrollToTop });
+
+                            </xmp>
+
+                            <h4>Basic html</h4>
+                            <xmp>
+                                <div class="scrolltotop">
+                                    <button class="scrolltotop__clickarea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 16">
+                                            <path d="M0,14l2.1,2L15,4l1.4,1.3h0L27.8,15.9l2.1-2L15,0Z" />
+                                        </svg>
+                                        <span>Gå til toppen</span>
+                                    </button>
+                                </div>
+                            </xmp>
+                            <p>PS: Husk at tilføje data-module="scrolltotop" til elementet, hvis du bruger bootstrapperen</p>
+                            <p>PPS: Husk - hvis du laver ændringer - der
+                                <em>kun</em> må være inline-elementer inde i en button.</p>
+
+                            <h3>Filer der skal bruges</h3>
+                            <p>src/js/modules/scrollToTop.js
+                                <br>scss/Modules/scrollToTop.scss</p>
+
+                            <h3>Ansvarlig</h3>
+                            <p>Lars Munkholm -
+                                <a href="mailto:lar@dis-play.dk?subject=Frontline modulet &quot;Scroll to top&quot;">lar@dis-play.dk</a>
+                            </p>
+
+                            <h3>Oprettet dato</h3>
+                            <p>7/9-2017</p>
+
+                            <h3>Ændret dato</h3>
+                            <p>*/*-2017</p>
+                        </div>
+                    </div>
+
+                    <div style="padding: 1px 0; height: calc(100vh - 60px); border-bottom:1px dashed #000;">
+                        <h1>Scroll to top</h1>
+                        <p>Når man scroller ned ad en side, og begynder at scrolle op igen, vises en knap til at gå til toppen.</p>
+                        <p>Man kan indstille, hvor mange skærmhøjder man skal scrolle ned på siden, før knappen kan
+                            <i>kan</i> vises.
+                            <br>Og hvor mange skærmhøjder man efterfølgende skal scrolle opad, før knappen bliver synlig.</p>
+                        <p>Knappen skjules igen, hvis brugeren bevæger sig nedad igen, eller kommer 1 skærmhøjde fra toppen
+                            af siden.</p>
+                    </div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+                    <div style="padding: 1px 0; height: 100vh; border-bottom:1px dashed #000;"></div>
+
+                    <div class="scrolltotop" data-module="scrolltotop">
+                        <button class="scrolltotop__clickarea">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 16">
+                                <path d="M0,14l2.1,2L15,4l1.4,1.3h0L27.8,15.9l2.1-2L15,0Z" />
+                            </svg>
+                            <span>Gå til toppen</span>
+                        </button>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+        <!--end.site-wrapper-->
+        <!--#include file="../shared-html/scripts.html" -->
+    </body>
+
+</html>

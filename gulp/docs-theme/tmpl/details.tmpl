@@ -1,0 +1,258 @@
+<?js
+const data = obj;
+
+
+if (data.deprecated) {
+?>
+
+<div class="details">
+    <div class="details__item details__item--deprecated searchable">
+        <div class="details__key">
+            <?js= this.partial('../svg/warning.svg') ?>
+            <span>Deprecated<?js if (data.deprecated !== true) { ?>:<?js } ?></span>
+        </div>
+        <div class="details__value">
+            <?js if (data.deprecated !== true) { ?>
+            <?js= data.deprecated ?>
+            <?js } ?>
+        </div>
+    </div>
+</div>
+<?js } ?>
+
+<?js if (data.mixinContent) {?>
+<div class="details">
+    <div class="details__item details__item--content">
+        <div class="details__key">Takes content<?js= data.mixinContent === true ? '' : ':' ?></div>
+        <div class="details__value searchable"><?js= data.mixinContent === true ? '' : data.mixinContent ?></div>
+    </div>
+</div>
+<?js } ?>
+
+<?js if (data.output) {?>
+<div class="details">
+    <div class="details__item details__item--output">
+        <div class="details__key">Outputs:</div>
+        <div class="details__value searchable"><?js= data.output === true ? '' : data.output ?></div>
+    </div>
+</div>
+<?js } ?>
+
+<?js if (
+    data.version ||
+    data.since ||
+    (data.inherited && data.inherits) ||
+    data.overrides ||
+    (data.implementations && data.implementations.length) ||
+    (data.implements && data.implements.length) ||
+    (data.mixes && data.mixes.length) ||
+    (data.author && author.length) ||
+    data.copyright ||
+    data.license ||
+    data.defaultvalue ||
+    (data.tutorials && tutorials.length) ||
+    (data.see && see.length) ||
+    (data.seeOther && seeOther.length) ||
+    (data.usedBy && usedBy.length) ||
+    (data.todo && todo.length) ||
+    (data.properties && data.properties.length && data.properties.forEach)) {?>
+<div class="details">
+    <?js if (data.version) {?>
+    <div class="details__item details__item--version">
+        <div class="details__key">Version:</div>
+        <div class="details__value"><?js= version ?></div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.since) {?>
+    <div class="details__item details__item--since">
+        <div class="details__key">Since:</div>
+        <div class="details__value"><?js= since ?></div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.inherited && data.inherits) { ?>
+    <div class="details__item details__item--inherited-from">
+        <div class="details__key">Inherited from:</div>
+        <div class="details__value"><?js= this.linkto(data.inherits, this.htmlsafe(data.inherits)) ?></div>
+    </div>
+	<?js } ?>
+
+    <?js if (data.overrides) { ?>
+    <div class="details__item details__item--overrides">
+        <div class="details__key">Overrides:</div>
+        <div class="details__value"><?js= this.linkto(data.overrides, this.htmlsafe(data.overrides)) ?></div>
+    </div>
+    <?js } ?>
+
+    <?js if (data.implementations && data.implementations.length) { ?>
+    <div class="details__item details__item--implementations">
+        <div class="details__key">Implementations:</div>
+        <div class="details__value">
+            <ul>
+                <?js data.implementations.forEach(impl => { ?>
+                <li><?js= this.linkto(impl, this.htmlsafe(impl)) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+    <?js } ?>
+
+    <?js if (data.implements && data.implements.length) { ?>
+    <div class="details__item details__item--implements">
+        <div class="details__key">Implements:</div>
+        <div class="details__value">
+            <ul>
+                <?js data.implements.forEach(impl => { ?>
+                <li><?js= this.linkto(impl, this.htmlsafe(impl)) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+    <?js } ?>
+
+    <?js if (data.mixes && data.mixes.length) { ?>
+    <div class="details__item details__item--mixins">
+        <div class="details__key">Mixes in:</div>
+        <div class="details__value">
+            <ul>
+                <?js data.mixes.forEach(mix => { ?>
+                <li><?js= this.linkto(mix, mix) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+    <?js } ?>
+
+	<?js if (data.author && author.length) {?>
+    <div class="details__item details__item--author">
+        <div class="details__key">Author<?js= author.length > 1 ? 's' : '' ?>:</div>
+        <div class="details__value">
+            <ul>
+                <?js author.forEach(author => { ?>
+                <li><?js= this.resolveAuthorLinks(author).replace(/mailto:.*?(?=")/, match => `${match}?subject=${data.longname || data.name || this.navOptions.systemName}`) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.copyright) {?>
+    <div class="details__item details__item--copyright">
+        <div class="details__key">Copyright:</div>
+        <div class="details__value"><?js= copyright ?></div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.license) {?>
+    <div class="details__item details__item--license">
+        <div class="details__key">License:</div>
+        <div class="details__value"><?js= license ?></div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.defaultvalue) {?>
+    <div class="details__item details__item--default-value">
+        <div class="details__key">Default value:</div>
+        <div class="details__value"><?js= data.defaultvalue ?></div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.tutorials && tutorials.length) {?>
+    <div class="details__item details__item--tutorials">
+        <div class="details__key">Tutorials:</div>
+        <div class="details__value">
+            <ul>
+                <?js tutorials.forEach(tutorial => { ?>
+                <li><?js= this.tutoriallink(tutorial) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.see && see.length) {?>
+    <div class="details__item details__item--see">
+        <div class="details__key">See:</div>
+        <div class="details__value">
+            <ul>
+                <?js see.forEach(s => { ?>
+                <li><?js= this.linkto(s) ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+	<?js if (data.seeOther && seeOther.length) {?>
+    <?js const alreadyLinkedTo = []; ?>
+    <div class="details__item details__item--see">
+        <div class="details__key">See:</div>
+        <div class="details__value">
+            <ul>
+                <?js seeOther.forEach(s => { ?>
+                <?js alreadyLinkedTo.push(`${s.context.type}-${s.context.name}`); ?>
+                <?js= `<li><a href="${s.docsPath}">@${s.context.type} ${s.context.name}</a></li>` ?>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+    <?js if (data.requiresOther && requiresOther.length) {?>
+    <?js const alreadyLinkedTo = []; ?>
+    <div class="details__item details__item--requires">
+        <div class="details__key">Requires:</div>
+        <div class="details__value">
+            <ul>
+                <?js requiresOther.forEach(s => { ?>
+                <?js if (alreadyLinkedTo.indexOf(`${s.type}-${s.name}`) === -1) { ?>
+                <?js alreadyLinkedTo.push(`${s.type}-${s.name}`); ?>
+                <?js= `<li><a href="${s.docsPath}">@${s.type} ${s.name}</a></li>` ?>
+                <?js } ?>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+    <?js } ?>
+
+    <?js if (data.usedBy && usedBy.length) {?>
+    <?js const alreadyLinkedTo = []; ?>
+    <div class="details__item details__item--used-by">
+        <div class="details__key">Used by:</div>
+        <div class="details__value">
+            <ul>
+                <?js usedBy.forEach(s => { ?>
+                <?js if (alreadyLinkedTo.indexOf(`${s.context.type}-${s.context.name}`) === -1) { ?>
+                <?js alreadyLinkedTo.push(`${s.context.type}-${s.context.name}`); ?>
+                <?js= `<li><a href="${s.docsPath}">@${s.context.type} ${s.context.name}</a></li>` ?>
+                <?js } ?>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+    <?js if (data.todo && todo.length) {?>
+    <div class="details__item details__item--todo">
+        <div class="details__key">To do:</div>
+        <div class="details__value">
+            <ul>
+                <?js todo.forEach(t => { ?>
+                <li><?js= t ?></li>
+                <?js }); ?>
+            </ul>
+        </div>
+    </div>
+	<?js } ?>
+
+
+
+    <?js if (data.properties && data.properties.length && data.properties.forEach) { ?>
+        <div class="details__properties"></div>
+        <h5 class="details__properties-title">Properties:</h5>
+        <?js= this.partial('schema.tmpl', data.properties) ?>
+    <?js } ?>
+</div>
+
+<?js } ?>

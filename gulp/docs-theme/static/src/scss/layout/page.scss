@@ -1,0 +1,85 @@
+body {
+    background: $color__background;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    color: $color__text;
+    overflow-y: scroll;
+}
+
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+:not(pre) > code[class*="language-"],
+:not(pre) > code {
+    padding: .1em .3em !important;
+    border-radius: .3em !important;
+    background: $palette__gray--light !important;
+    box-shadow: inset 0 1px rgba(#000, .05), inset 0 -1px rgba(#000, .1);
+}
+
+.container {
+    max-width: map-get($screensizes, "xl");
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 #{$gutter};
+}
+
+h1 {
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+h2 {
+    margin: 2rem 0 1rem;
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+h3 {
+    margin: 2rem 0 1rem;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+h4, h5, h6 {
+    margin: 1.5rem 0 .5rem;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+h5 {
+    font-size: 1.1em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+li {
+    margin: .5em 0;
+}
+
+h2, h3, h4, h5, h6, p, ul, ol, li {
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    color: $palette__blue;
+}
+
+blockquote {
+    margin: 0;
+    padding: .5rem 0 .5rem 1rem;
+    border-left: $border__width solid $palette__gray--dark;
+    color: mix($color__text, $color__background, 50%);
+}

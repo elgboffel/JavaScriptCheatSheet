@@ -1,0 +1,24 @@
+.inview {
+    &--element {
+        min-height: 200px;
+        background-color: #f8f8f8;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        font-size: 16px;
+        transition: all 350ms ease-out;
+        margin-bottom: 15px;
+
+        &.inview {
+            background-color: #111;
+            color: #f8f8f8;
+        }
+
+        &.custom-class-of-doom {
+            background-color: #ff0000;
+        }
+    }
+}

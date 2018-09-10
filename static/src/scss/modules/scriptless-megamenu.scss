@@ -1,0 +1,233 @@
+// These variables are just for test purposes, although you can use them if you wish.
+$sl-megamenu-background-firstlevel:		#445d70;
+$sl-megamenu-color:						#cfcfcf;
+$sl-megamenu-color-hover:				#6ab9cf;
+$sl-megamenu-background-secondlevel:	#2a2b30;
+$sl-megamenu-dropdown-breakpoint:		768px;
+$sl-megamenu-hover-in-delay:			.1s; // Set to e.g. .1s or 100ms
+$sl-megamenu-hover-out-delay:			$sl-megamenu-hover-in-delay; // Set to e.g. 0s or the same as "in-delay" above
+
+.sl-megamenu {
+    background: $sl-megamenu-background-firstlevel;
+
+    // This positioning is just for show, but hey... it works.
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    max-height: 100vh;
+    overflow: auto;
+
+    @media (min-width: $sl-megamenu-dropdown-breakpoint) {
+        overflow: visible;
+    }
+
+    // We'll reset the styles of all unordered lists we come across.
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // The "inner" class can be used to distance content from the screen borders.
+    &__inner {
+        @extend .container;
+        position: static;
+    }
+
+    // The first-level object is the first set of menu items - in other words, the items that can
+    // show a sublevel.
+    &__first-level {
+        > li {
+            // We'll float the items on tablets and larger.
+            @media (min-width: $sl-megamenu-dropdown-breakpoint) {
+                float: left;
+            }
+        }
+    }
+
+    // The "trigger" can be both a link, a div or... like, whatever. It's simply the element
+    // found in the first-level menu
+    &__trigger {
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 1;
+        white-space: nowrap;
+        padding: .8em .8em;
+        color: $sl-megamenu-color;
+        font-weight: 700;
+    }
+
+    // The second-level block is the actual "dropdown" that appears when you hover over
+    // an item, or click it on mobile.
+    &__second-level {
+        background: $sl-megamenu-background-secondlevel;
+
+        li {
+            padding: .5em .5em;
+
+            a {
+                text-decoration: none;
+                font-size: .9em;
+                color: $sl-megamenu-color;
+
+                &:hover {
+                    color: $sl-megamenu-color-hover;
+                }
+            }
+        }
+
+        .sl-megamenu__inner {
+            padding: .5em;
+        }
+
+        @if $sl-megamenu-hover-in-delay {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0s $sl-megamenu-hover-out-delay;
+        } @else {
+            display: none;
+        }
+
+        .touchevents & {
+            display: none;
+            max-height: none;
+        }
+
+        // We'll only position the second-level object absolutely on tablets and larger.
+        // On smaller devices, we'll just expand the menu right below the trigger.
+        @media (min-width: $sl-megamenu-dropdown-breakpoint) {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+        }
+    }
+
+    // This is a label that pops up over the rest of the content, to allow the user to click
+    // the page body to close the dropdown again.
+    &__close-trigger {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        content: "";
+        display: none;
+        z-index: -1;
+    }
+
+    // We'll hide the radio buttons to the best of our ability, while still retaining the
+    // option of selecting them by keyboard navigation.
+    &__radio {
+        position: absolute;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        width: 1px;
+        height: 1px;
+        clip: rect(0, 0, 0, 0);
+
+        &:checked ~ {
+            .sl-megamenu {
+
+                // This is the dropdown in question.
+                &__second-level {
+                    display: block;
+                }
+
+                // This should color the trigger, so it looks like it's selected.
+                &__trigger {
+                    background: $sl-megamenu-background-secondlevel;
+                }
+
+                // This shows the "close trigger"-label, which allows the user to close the
+                // dropdown by clicking the page body.
+                &__close-trigger {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    // ------------------------------------------------------------------------------
+    // The "events" for non-touch devices are pretty straight-forward.
+    // ------------------------------------------------------------------------------
+    .no-touchevents & {
+        &__first-level {
+            > li {
+
+                // Hover-states always work. Right?
+                &:hover {
+                    background: $sl-megamenu-background-secondlevel;
+
+                    .sl-megamenu__second-level {
+                        @if $sl-megamenu-hover-in-delay {
+                            max-height: 99999em;
+                            transition-delay: $sl-megamenu-hover-in-delay;
+                        } @else {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        // We won't need the trigger-target labels at all, and showing them will only lead
+        // to trouble if the user unknowingly clicks one and activates the associated radio
+        // button. So we hide 'em.
+        &__trigger-target {
+            display: none;
+        }
+    }
+
+    // ------------------------------------------------------------------------------
+    // The events for touch-devices are a little trickier. But not by much.
+    // ------------------------------------------------------------------------------
+    .touchevents & {
+
+        &__trigger {
+            // A bit of magic for the trigger itself.
+            position: relative;
+            user-select: none;
+
+            // Trigger targets are hidden per default. Let's show 'em now!
+            &-target {
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                content: "";
+
+                // This ensures that only one of the two labels (enable and disable) is visible.
+                &--disable {
+                    display: none;
+                }
+            }
+        }
+
+        &__radio {
+            &:checked ~ {
+                .sl-megamenu {
+                    &__trigger {
+
+                        // We'll switch out the trigger targets, so clicking the clicked item
+                        // again will toggle the menu.
+                        .sl-megamenu__trigger-target {
+                            &--disable {
+                                display: block;
+                            }
+
+                            &--enable {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

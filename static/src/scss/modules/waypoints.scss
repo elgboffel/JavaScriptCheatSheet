@@ -1,0 +1,77 @@
+.waypoints-container {
+
+    .frontline-modules-description {
+        margin-bottom: 200px;
+    }
+
+    h2 {
+        font-size: 45px;
+    }
+
+    section {
+        padding: 100px 0 100px 0;
+
+        p {
+            background-color: #FFB69B;
+            padding: 20px;
+        }
+    }
+
+    .singleElement p {
+        background-color: #7fffd4;
+        padding: 20px;
+    }
+
+    .animated {
+        animation-duration: 2s;
+        animation-fill-mode: both;
+    }
+
+    @keyframes bounceInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(2000px);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translateY(-30px);
+        }
+
+        80% {
+            transform: translateY(10px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .bounceInUp {
+        animation-name: bounceInUp;
+    }
+
+    @keyframes bounceInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-2000px);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translateX(30px);
+        }
+
+        80% {
+            transform: translateX(-10px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .bounceInLeft {
+        animation-name: bounceInLeft;
+    }
+}

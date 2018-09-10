@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8">
+    <title><?js= cleanTitle ?> | <?js= this.navOptions.systemName ?> <?js= this.navOptions.systemVersion ?></title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="css/prism.css">
+</head>
+
+<body>
+
+<input id="navigation" class="navigation-toggle" type="checkbox" autocomplete="off">
+<input id="search" class="search-toggle" type="checkbox" autocomplete="off">
+
+<div class="page-header">
+    <div class="container">
+        <a class="page-header__title" href="<?js= this.nav.index.link ?>">
+            <b><?js= this.navOptions.systemName ?></b> <?js= this.navOptions.systemVersion ?>
+        </a>
+
+        <label class="page-header__toggle-search" for="search">
+            <svg viewBox="20 20 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M59.446,55.911L49.337,45.802c1.922-2.64,3.069-5.88,3.069-9.396c0-8.837-7.163-16-16-16s-16,7.163-16,16s7.163,16,16,16  c3.516,0,6.756-1.147,9.396-3.069l10.109,10.109L59.446,55.911z M36.406,47.406c-6.065,0-11-4.935-11-11s4.935-11,11-11  s11,4.935,11,11S42.471,47.406,36.406,47.406z"/></svg>
+        </label>
+
+        <label class="page-header__toggle-menu" for="navigation">
+            <span></span><span></span><span></span>
+        </label>
+    </div>
+</div>
+
+<main class="page-body">
+    <div class="page-body__container container">
+        <?js= content ?>
+    </div>
+</main>
+
+<div class="search">
+    <div class="search__field">
+        <input type="search" class="search__input" placeholder="What are you looking for?">
+    </div>
+    <div class="search__body"><div class="search__results"></div></div>
+</div>
+
+
+<script src="js/main.js"></script>
+<iframe src="quicksearch.html" style="position: absolute; z-index: -1; top: 0; left: 0; width: 0; height: 0; border: 0; opacity: 0;"></iframe>
+</body>
+</html>

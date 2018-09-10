@@ -1,0 +1,26 @@
+.ripple-effect {
+    cursor: pointer;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+
+    span {
+        // Ripple element
+        position: absolute;
+        background: rgba(255, 255, 255, .8);
+        pointer-events: none;
+        transform: scale(0);
+        transition: transform linear 700ms, opacity linear 700ms;
+        transition-timing-function: cubic-bezier(.25, .46, .45, .94);
+        border-radius: 50%;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &::selection {
+        background: transparent;
+        pointer-events: none;
+    }
+}

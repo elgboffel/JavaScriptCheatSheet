@@ -1,0 +1,111 @@
+.schema {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    overflow: auto;
+
+    &__content {
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    table {
+        border-spacing: 0;
+        min-width: 10rem;
+    }
+
+    &__cell {
+        padding: .5rem;
+        border-bottom: $border__width--schema solid $palette__gray--dark;
+        vertical-align: top;
+
+        &:first-child {
+            border-left: $border__width--schema solid $palette__gray--dark;
+            padding-left: 1rem;
+        }
+
+        &:last-child {
+            border-right: $border__width--schema solid $palette__gray--dark;
+            padding-right: 1rem;
+        }
+
+        &--head {
+            text-align: left;
+            font-weight: normal;
+            background: $palette__gray--dark;
+            text-shadow: 0 1px $palette__gray;
+            cursor: default;
+        }
+
+        &--body {
+            tr:nth-child(even) > & {
+                background: mix($palette__gray--light, $palette__gray--dark, 95%);
+            }
+
+            tr:nth-child(odd) > & {
+                background: mix($palette__gray--light, $color__background, 50%);
+            }
+        }
+
+        &--attributes {
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            li {
+                white-space: nowrap;
+            }
+        }
+
+        &--description {
+            min-width: 15rem;
+        }
+    }
+
+    &__sub-schema {
+        &,
+        > td {
+            margin: 0;
+            padding: 0;
+        }
+
+        > td {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: 1px;
+                top: calc(-.5rem - #{$border__width--schema});
+                border-right: .5rem solid transparent;
+                border-bottom: .5rem solid $palette__gray--dark;
+            }
+        }
+
+        .schema {
+            .schema__content {
+                border-left: .5rem solid $palette__gray--dark;
+
+                &,
+                table {
+                    width: 100%;
+                }
+            }
+        }
+
+        &:not(:last-child) {
+            .schema {
+                .schema__content {
+                    border-bottom: $border__width--schema solid $palette__gray--dark;
+                }
+            }
+        }
+    }
+
+    &__empty {
+        display: none;
+    }
+}

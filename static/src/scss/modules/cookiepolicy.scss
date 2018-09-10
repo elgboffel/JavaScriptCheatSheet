@@ -1,0 +1,81 @@
+// .cookiepolicy {
+//     display: none;
+//     padding: 10px;
+
+//     position: fixed;
+//     z-index: 100;
+
+//     color: rgb(0,0,0);
+
+//     &--active {
+//         display: block;
+//     }
+
+//     &--top {
+//         top: 0;
+//     }
+//     &--bottom {
+//         bottom: 0;
+//     }
+//     &--left {
+//         left: 0;
+//     }
+//     &--right {
+//         right: 0;
+//     }
+
+//     &--line,
+//     &--fullbox {
+//         width: 100%;
+//         left: 0;
+
+//         @include clearfix;
+//     }
+
+//     &--line {
+//         background-color: orange;
+//         z-index: 200;
+
+//         .cookiepolicy__actions {
+//             float: right;
+//             margin-top: -13px;
+//         }
+
+//         .wrapper {
+//             max-width: 1440px;
+//         }
+//     }
+
+//     &--fullbox {
+
+//         background-color: blue;
+
+//         .cookiepolicy__actions {
+//             text-align: center;
+//         }
+//     }
+
+//     &--box {
+//         width: 400px;
+//         background-color: green;
+
+//         z-index: 300;
+//     }
+
+//     &__clear {
+//         padding: 10px;
+//         background-color: green;
+//         border-radius: 10px;
+//     }
+
+//     a {
+//         color: rgb(0,0,0);
+//     }
+
+//     button {
+//         height: auto;
+//         line-height: normal;
+//         color: black;
+//         background-color: white;
+//     }
+// }
